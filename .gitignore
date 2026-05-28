@@ -102,3 +102,6 @@ dump.rdb
 
 # Ignore build files
 /app/assets/builds
+
+# Editor files
+tsconfig.json
