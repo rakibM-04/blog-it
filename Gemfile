@@ -71,4 +71,5 @@ end
 gem "connection_pool", "~> 2.4"
 gem "react-rails", "~> 2.7.1"
 
+gem "data_migrate"
 gem "pry-byebug"
