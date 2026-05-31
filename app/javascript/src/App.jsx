@@ -4,13 +4,14 @@ import "./common/i18n";
 
 import React from "react";
 
-import { Flash, HourGlass } from "@bigbinary/neeto-icons";
+import PageNotFound from "common/PageNotFound";
+import Dashboard from "components/Dashboard";
+import { CreatePost } from "components/Posts";
+import { t } from "i18next";
+import { Book, Edit, Flash } from "neeto-icons";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-
-import PageNotFound from "./common/PageNotFound";
-import BlogPosts from "./components/BlogPosts";
-import routes from "./routes";
-import SidebarLink from "./utils/SidebarLink";
+import routes from "routes";
+import SidebarLink from "utils/SidebarLink";
 
 const App = () => (
   <React.StrictMode>
@@ -21,15 +22,21 @@ const App = () => (
             <Flash />
           </div>
           <SidebarLink
-            icon={<HourGlass />}
-            name="Blog Posts"
+            icon={<Book />}
+            name={t("blogPosts.title")}
             route={routes.home}
+          />
+          <SidebarLink
+            icon={<Edit />}
+            name={t("blogPosts.title")}
+            route={routes.posts.create}
           />
         </div>
         <div className="flex-1">
           <Switch>
-            <Route exact component={BlogPosts} path={routes.home} />
-            <Route component={PageNotFound} path="*" />
+            <Route exact component={Dashboard} path={routes.home} />
+            <Route exact component={CreatePost} path={routes.posts.create} />
+            <Route component={PageNotFound} path={routes.all} />
           </Switch>
         </div>
       </div>

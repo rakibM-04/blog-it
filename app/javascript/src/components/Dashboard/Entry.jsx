@@ -1,12 +1,10 @@
-import React from "react";
-
-import { Typography } from "@bigbinary/neetoui";
+import { Typography } from "neetoui";
 
 import { formatDate } from "./utils";
 
 const Post = ({ title, description, created_at }) => (
   <div className="flex flex-col items-start gap-1 rounded-md border-2 border-slate-200 px-2 py-4">
-    <Typography className="font-bold" style="h2">
+    <Typography className="font-bold" style="h3">
       {title}
     </Typography>
     <Typography>{description}</Typography>

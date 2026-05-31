@@ -1,3 +1,5 @@
+import Post from "./Entry";
+
 export const formatDate = dateString => {
   const date = new Date(dateString);
 
@@ -16,3 +18,6 @@ export const formatDate = dateString => {
 
   return `${month} ${ordinal(day)}, ${year}`;
 };
+
+export const createPostEntries = posts =>
+  posts.map(post => <Post key={post.id} {...post} />);

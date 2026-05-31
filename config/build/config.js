@@ -17,6 +17,10 @@ const alias = {
   assets: absolutePath("../assets"),
   utils: absolutePath("src/utils"),
   translations: absolutePath("src/translations"),
+  routes: absolutePath("src/routes.js"),
+  neetoui: absolutePath("../../node_modules/@bigbinary/neetoui"),
+  "neeto-icons": absolutePath("../../node_modules/@bigbinary/neeto-icons"),
+  "neetoui/formik": absolutePath("node_modules/@bigbinary/neetoui/formik"),
 };
 
 export { alias };

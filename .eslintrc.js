@@ -153,5 +153,7 @@ module.exports = {
     "no-var": "error",
     // auto-fixable: This rule conflicts with prettier rules. Thus we've NOT kept this rule in react file. This rule ensures we don't add blank lines in JSX.
     "react/jsx-newline": ["error", { prevent: true }],
+
+    "react/react-in-jsx-scope": "off",
   },
 };

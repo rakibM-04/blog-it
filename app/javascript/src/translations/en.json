@@ -2,5 +2,17 @@
   "pageNotFound": {
     "title": "Page Not Found",
     "buttonLabel": "Back to Home"
+  },
+  "blogPosts": {
+    "title": "Blog Posts",
+    "addNewPost": "Add new Post"
+  },
+  "posts": {
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
   }
 }

@@ -1,6 +1,4 @@
-import React from "react";
-
-import { Tooltip } from "@bigbinary/neetoui";
+import { Tooltip } from "neetoui";
 import { NavLink } from "react-router-dom";
 
 const SidebarLink = ({ route, icon, name }) => (
