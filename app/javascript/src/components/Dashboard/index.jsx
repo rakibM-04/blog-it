@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { createPostEntries } from "./utils";
 
 const BlogPosts = () => {
-  const [postsData, setPostsData] = useState({ data: { posts: [] } });
+  const [postsData, setPostsData] = useState({ posts: [] });
   const { t } = useTranslation();
 
   const fetchPosts = async () => {
@@ -24,7 +24,7 @@ const BlogPosts = () => {
     fetchPosts();
   }, []);
 
-  const { data: { posts } = {} } = postsData;
+  const { posts = [] } = postsData;
 
   return (
     <div className="flex h-full flex-col gap-8 overflow-hidden p-8">

@@ -6,6 +6,6 @@ export const FORM_DEFAULT_VALUES = {
 };
 
 export const FORM_VALIDATION_SCHEMA = yup.object().shape({
-  title: yup.string().required(),
+  title: yup.string().required("NEED IT"),
   description: yup.string().required(),
 });

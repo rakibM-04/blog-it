@@ -1,8 +1,9 @@
 const routes = {
-  home: "/",
+  home: "/app",
   all: "*",
   posts: {
-    create: "/posts/create",
+    create: "/app/posts/create",
+    show: "/app/posts/show/:slug",
   },
 };
 
