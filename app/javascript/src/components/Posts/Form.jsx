@@ -8,9 +8,8 @@ import { useTranslation } from "react-i18next";
 
 import { FORM_DEFAULT_VALUES, FORM_VALIDATION_SCHEMA } from "./constants";
 
-const Form = () => {
+const Form = ({ handleSubmit }) => {
   const { t } = useTranslation();
-  const handleSubmit = () => {};
 
   return (
     <NeetoUIForm

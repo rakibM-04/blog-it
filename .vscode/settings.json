@@ -10,6 +10,12 @@
   "editor.formatOnSave": true,
   "yaml.format.enable": true,
   "cSpell.words": [
-    "Neeto"
+    "bigbinary",
+    "Neeto",
+    "neetocist",
+    "neetoicons",
+    "neetoui",
+    "reactquery",
+    "Toastr"
   ],
 }

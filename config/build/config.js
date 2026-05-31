@@ -18,9 +18,13 @@ const alias = {
   utils: absolutePath("src/utils"),
   translations: absolutePath("src/translations"),
   routes: absolutePath("src/routes.js"),
-  neetoui: absolutePath("../../node_modules/@bigbinary/neetoui"),
-  "neeto-icons": absolutePath("../../node_modules/@bigbinary/neeto-icons"),
-  "neetoui/formik": absolutePath("node_modules/@bigbinary/neetoui/formik"),
+  constants: absolutePath("src/constants"),
+  hooks: absolutePath("src/hooks"),
+  stores: absolutePath("src/stores"),
+  neetoui: path.resolve(process.cwd(), "node_modules/@bigbinary/neetoui"),
+  neetoicons: path.resolve(process.cwd(), "node_modules/@bigbinary/neeto-icons"),
+  neetocist: path.resolve(process.cwd(), "node_modules/@bigbinary/neeto-cist"),
+  reactquery: path.resolve(process.cwd(), "node_modules/@tanstack/react-query"),
 };
 
 export { alias };
