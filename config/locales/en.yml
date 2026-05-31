@@ -31,3 +31,4 @@ en:
   post:
     slug:
       immutable: "is immutable!"
+    successfully_created: "Post is successfully created!"

@@ -5,7 +5,7 @@ const fetch = () => axios.get("/posts");
 const show = slug => axios.get(`/posts/${slug}`);
 
 const create = payload =>
-  axios.post("/posts/", {
+  axios.post("/posts", {
     post: payload,
   });
 

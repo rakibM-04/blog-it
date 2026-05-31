@@ -1,5 +1,5 @@
 import postsApi from "apis/posts";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "reactquery";
 
 export const useFetchPosts = () =>
   useQuery({
@@ -10,4 +10,10 @@ export const useShowPost = ({ slug }) =>
   useQuery({
     queryKey: [slug],
     queryFn: () => postsApi.show({ slug }),
+  });
+
+export const useCreatePost = () =>
+  useMutation({
+    mutationFn: ({ title, description }) =>
+      postsApi.create({ title, description }),
   });

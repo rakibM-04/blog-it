@@ -1,4 +1,5 @@
 {
+  "defaultErrorNotification": "Something went wrong!",
   "pageNotFound": {
     "title": "Page Not Found",
     "buttonLabel": "Back to Home"
