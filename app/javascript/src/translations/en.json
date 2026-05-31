@@ -6,9 +6,10 @@
   },
   "blogPosts": {
     "title": "Blog Posts",
-    "addNewPost": "Add new Post"
+    "addNewPost": "New Post"
   },
   "posts": {
+    "create": "Create Post",
     "form": {
       "title": "Title",
       "description": "Description",

@@ -6,15 +6,16 @@ import React from "react";
 
 import PageNotFound from "common/PageNotFound";
 import Dashboard from "components/Dashboard";
-import { CreatePost } from "components/Posts";
+import { CreatePost, ShowPost } from "components/Posts";
 import { t } from "i18next";
-import { Book, Edit, Flash } from "neetoicons";
+import { Book, Edit } from "neetoicons";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { QueryClientProvider } from "reactquery";
 import routes from "routes";
 import queryClient from "utils/queryClient";
 import SidebarLink from "utils/SidebarLink";
+import { matchesAnyPath } from "utils/url";
 
 const App = () => (
   <React.StrictMode>
@@ -22,18 +23,21 @@ const App = () => (
       <BrowserRouter>
         <ToastContainer />
         <div className="flex h-screen w-full">
-          <div className="flex-0 flex flex-col justify-start gap-2 px-2 py-10">
-            <div className="mb-4 rounded-md bg-black p-1 text-white">
-              <Flash />
-            </div>
+          <div className="flex-0 flex flex-col justify-start gap-2 px-2 py-10 shadow-md">
             <SidebarLink
               icon={<Book />}
               name={t("blogPosts.title")}
               route={routes.home}
+              isActive={(_, location) =>
+                matchesAnyPath(location.pathname, [
+                  routes.home,
+                  routes.posts.show,
+                ])
+              }
             />
             <SidebarLink
               icon={<Edit />}
-              name={t("blogPosts.title")}
+              name={t("posts.create")}
               route={routes.posts.create}
             />
           </div>
@@ -41,6 +45,7 @@ const App = () => (
             <Switch>
               <Route exact component={Dashboard} path={routes.home} />
               <Route exact component={CreatePost} path={routes.posts.create} />
+              <Route exact component={ShowPost} path={routes.posts.show} />
               <Route component={PageNotFound} path={routes.all} />
             </Switch>
           </div>

@@ -1,13 +1,19 @@
 import { Typography } from "neetoui";
+import { Link } from "react-router-dom";
+import routes from "routes";
+import { formatDate } from "utils/date";
+import { buildUrl } from "utils/url";
 
-import { formatDate } from "./utils";
-
-const Post = ({ title, description, created_at }) => (
+const Post = ({ title, description, created_at, slug }) => (
   <div className="flex flex-col items-start gap-1 rounded-md border-2 border-slate-200 px-2 py-4">
-    <Typography className="font-bold" style="h3">
-      {title}
+    <Link to={buildUrl(routes.posts.show, { slug })}>
+      <Typography className="font-bold hover:cursor-pointer" style="h3">
+        {title}
+      </Typography>
+    </Link>
+    <Typography className="line-clamp-2">
+      {description.slice(0, 100)}
     </Typography>
-    <Typography>{description}</Typography>
     <Typography className="text-gray-400" style="h5">
       {formatDate(created_at)}
     </Typography>

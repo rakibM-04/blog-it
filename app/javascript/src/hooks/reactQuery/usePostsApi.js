@@ -9,7 +9,7 @@ export const useFetchPosts = () =>
 export const useShowPost = ({ slug }) =>
   useQuery({
     queryKey: [slug],
-    queryFn: () => postsApi.show({ slug }),
+    queryFn: () => postsApi.show(slug),
   });
 
 export const useCreatePost = () =>

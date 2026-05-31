@@ -1,6 +1,7 @@
 import { keysToSnakeCase } from "neetocist";
 import { stringify } from "qs";
 import { isEmpty, toPairs, omit, pipe } from "ramda";
+import { matchPath } from "react-router-dom";
 
 export const buildUrl = (route, params) => {
   const placeHolders = [];
@@ -19,3 +20,12 @@ export const buildUrl = (route, params) => {
 
   return isEmpty(queryParams) ? route : `${route}?${queryParams}`;
 };
+
+export const matchesAnyPath = (path, patterns) =>
+  patterns.some(pattern =>
+    matchPath(path, {
+      path: pattern,
+      exact: true,
+      strict: false,
+    })
+  );
