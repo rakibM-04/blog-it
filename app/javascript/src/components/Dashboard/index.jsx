@@ -4,6 +4,7 @@ import postsApi from "apis/posts";
 import Logger from "js-logger";
 import { Typography, Button } from "neetoui";
 import { useTranslation } from "react-i18next";
+import routes from "routes";
 
 import { createPostEntries } from "./utils";
 
@@ -33,7 +34,7 @@ const BlogPosts = () => {
         <Button
           className="themed-button"
           label={t("blogPosts.addNewPost")}
-          to="/posts/create"
+          to={routes.posts.create}
         />
       </div>
       <div className="flex h-full flex-col gap-4 overflow-y-scroll">

@@ -1,4 +1,5 @@
 import { NoData } from "neetoui";
+import routes from "routes";
 import withT from "utils/withT";
 
 import Logo from "./Logo";
@@ -11,7 +12,7 @@ const PageNotFound = ({ t }) => (
       primaryButtonProps={{
         label: t("pageNotFound.buttonLabel"),
         className: "bg-neutral-800 hover:bg-neutral-950",
-        to: "/",
+        to: routes.home,
       }}
     />
   </div>
