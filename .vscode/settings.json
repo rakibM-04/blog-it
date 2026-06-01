@@ -11,11 +11,14 @@
   "yaml.format.enable": true,
   "cSpell.words": [
     "bigbinary",
+    "bloggable",
+    "downvotes",
     "Neeto",
     "neetocist",
     "neetoicons",
     "neetoui",
     "reactquery",
-    "Toastr"
-  ],
+    "Toastr",
+    "upvotes"
+  ]
 }
