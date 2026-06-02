@@ -8,7 +8,10 @@
     "title": "Blog Posts",
     "addNewPost": "New Post",
     "filters": {
-      "categories": "Categories"
+      "categories": "Categories",
+      "title": "Filter",
+      "submit": "Submit",
+      "cancel": "Cancel"
     }
   },
   "posts": {

@@ -28,7 +28,7 @@ const Filter = ({ isOpen, onClose, filters, handleSubmit }) => {
   return (
     <Pane isOpen={isOpen} size="small" onClose={onClose}>
       <Pane.Header>
-        <Typography style="h2">Filters</Typography>
+        <Typography style="h2">{t("blogPosts.filters.title")}</Typography>
       </Pane.Header>
       <NeetoUIForm
         className="flex w-full flex-col justify-start"
@@ -51,8 +51,12 @@ const Filter = ({ isOpen, onClose, filters, handleSubmit }) => {
           />
         </Pane.Body>
         <Pane.Footer className="flex gap-4">
-          <Button className="themed-button" label="Submit" type="submit" />
-          <Button label="Cancel" style="secondary" />
+          <Button
+            className="themed-button"
+            label={t("blogPosts.filters.submit")}
+            type="submit"
+          />
+          <Button label={t("blogPosts.filters.cancel")} style="secondary" />
         </Pane.Footer>
       </NeetoUIForm>
     </Pane>
