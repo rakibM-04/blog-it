@@ -10,7 +10,13 @@ const Show = () => {
     data: { post: { title, description, created_at } = {} } = {},
   } = useShowPost({ slug });
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full flex-col gap-4 overflow-hidden p-8">

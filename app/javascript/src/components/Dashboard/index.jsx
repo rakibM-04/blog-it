@@ -1,31 +1,21 @@
-import { useEffect, useState } from "react";
-
-import postsApi from "apis/posts";
-import Logger from "js-logger";
-import { Typography, Button } from "neetoui";
+import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
+import { Typography, Button, Spinner } from "neetoui";
 import { useTranslation } from "react-i18next";
 import routes from "routes";
 
 import { createPostEntries } from "./utils";
 
 const BlogPosts = () => {
-  const [postsData, setPostsData] = useState({ posts: [] });
+  const { data: { posts } = {}, isLoading } = useFetchPosts();
   const { t } = useTranslation();
 
-  const fetchPosts = async () => {
-    try {
-      const data = await postsApi.fetch();
-      setPostsData(data);
-    } catch (error) {
-      Logger.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const { posts = [] } = postsData;
+  if (isLoading) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full flex-col gap-8 overflow-hidden p-8">

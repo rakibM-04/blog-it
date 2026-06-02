@@ -14,7 +14,7 @@ const Entry = ({ title, created_at, slug, categories, author }) => (
       </Typography>
     </Link>
     <div className="flex gap-2">{createCategoryTags(categories)}</div>
-    <Typography className="mt-4">{author}</Typography>
+    <Typography className="mt-2">{author}</Typography>
     <Typography className="text-gray-400" style="h5">
       {formatDate(created_at)}
     </Typography>
