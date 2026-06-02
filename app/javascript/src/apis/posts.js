@@ -6,7 +6,7 @@ const show = slug => axios.get(`/posts/${slug}`);
 
 const create = payload =>
   axios.post("/posts", {
-    post: payload,
+    post: { user_id: 1, organization_id: 1, ...payload },
   });
 
 const postsApi = { fetch, show, create };
