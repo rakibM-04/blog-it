@@ -21,7 +21,7 @@ const Show = () => {
   return (
     <div className="flex h-full flex-col gap-4 overflow-hidden p-8">
       <div>
-        <Typography className="bold text-4xl">{title}</Typography>
+        <Typography className="bold text-4xl capitalize">{title}</Typography>
         <Typography className="text-gray-400">
           {formatDate(created_at)}
         </Typography>

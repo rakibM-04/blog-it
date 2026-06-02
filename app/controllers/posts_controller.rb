@@ -5,6 +5,12 @@ class PostsController < ApplicationController
   before_action :load_posts!, only: :index
 
   def index
+    if params[:categories].present?
+      @posts = Post.all.filter do |post|
+        !post.categories.where(id: params[:categories]).empty?
+      end
+    end
+
     render
   end
 

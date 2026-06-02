@@ -6,14 +6,17 @@
   },
   "blogPosts": {
     "title": "Blog Posts",
-    "addNewPost": "New Post"
+    "addNewPost": "New Post",
+    "filters": {
+      "categories": "Categories"
+    }
   },
   "posts": {
     "create": "Create Post",
     "form": {
       "title": "Title",
       "description": "Description",
-      "category": "Category",
+      "categories": "Categories",
       "submit": "Submit",
       "cancel": "Cancel"
     }

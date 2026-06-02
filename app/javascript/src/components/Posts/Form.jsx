@@ -31,7 +31,7 @@ const Form = ({ handleSubmit }) => {
         <Textarea label={t("posts.form.description")} name="description" />
         <Select
           isMulti
-          label={t("posts.form.category")}
+          label={t("posts.form.categories")}
           name="categories"
           optionRemapping={{ label: "name", value: "id" }}
           options={categories}

@@ -1,7 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import categoriesApi from "apis/categories";
+import { useQuery } from "reactquery";
 
 export const useFetchCategories = () =>
   useQuery({
+    queryKey: ["categories"],
     queryFn: () => categoriesApi.fetch(),
+    staleTime: 0,
   });

@@ -1,9 +1,12 @@
 import postsApi from "apis/posts";
 import { useMutation, useQuery } from "reactquery";
 
-export const useFetchPosts = () =>
+export const useFetchPosts = ({ categories = [] }) =>
   useQuery({
-    queryFn: () => postsApi.fetch(),
+    queryKey: ["posts", categories],
+    queryFn: () => postsApi.fetch({ categories }),
+    staleTime: 0,
+    cacheTime: 0,
   });
 
 export const useShowPost = ({ slug }) =>
