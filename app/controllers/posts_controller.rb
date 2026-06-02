@@ -2,20 +2,20 @@
 
 class PostsController < ApplicationController
   before_action :load_post!, only: :show
+  before_action :load_posts!, only: :index
 
   def index
-    posts = Post.all
-    render status: :ok, json: { posts: }
+    render
   end
 
   def create
     post = Post.new(post_params)
     post.save!
-    render_notice(t("post.successfully_created"))
+    render
   end
 
   def show
-    render_json({ post: @post })
+    render
   end
 
   private
@@ -24,7 +24,11 @@ class PostsController < ApplicationController
       @post = Post.find_by!(slug: params[:slug])
     end
 
+    def load_posts!
+      @posts = Post.all
+    end
+
     def post_params
-      params.require(:post).permit(:title, :description)
+      params.require(:post).permit(:title, :description, :organization_id, :user_id, category_ids: [])
     end
 end

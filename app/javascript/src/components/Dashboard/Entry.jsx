@@ -4,20 +4,21 @@ import routes from "routes";
 import { formatDate } from "utils/date";
 import { buildUrl } from "utils/url";
 
-const Post = ({ title, description, created_at, slug }) => (
+import { createCategoryTags } from "./utils";
+
+const Entry = ({ title, created_at, slug, categories, author }) => (
   <div className="flex flex-col items-start gap-1 rounded-md border-2 border-slate-200 px-2 py-4">
     <Link to={buildUrl(routes.posts.show, { slug })}>
-      <Typography className="font-bold hover:cursor-pointer" style="h3">
+      <Typography className="font-bold hover:cursor-pointer" style="h1">
         {title}
       </Typography>
     </Link>
-    <Typography className="line-clamp-2">
-      {description.slice(0, 100)}
-    </Typography>
+    <div className="flex gap-2">{createCategoryTags(categories)}</div>
+    <Typography className="mt-4">{author}</Typography>
     <Typography className="text-gray-400" style="h5">
       {formatDate(created_at)}
     </Typography>
   </div>
 );
 
-export default Post;
+export default Entry;

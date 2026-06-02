@@ -8,9 +8,10 @@ const Create = () => {
   const mutation = useCreatePost();
   const history = useHistory();
 
-  const handleSubmit = async ({ title, description }) => {
+  const handleSubmit = async ({ title, description, categories }) => {
+    const categoryIds = categories.map(category => category.id);
     mutation.mutate(
-      { title, description },
+      { title, description, category_ids: categoryIds },
       {
         onSuccess: () => {
           history.push(routes.home);

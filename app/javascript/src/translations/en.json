@@ -13,6 +13,7 @@
     "form": {
       "title": "Title",
       "description": "Description",
+      "category": "Category",
       "submit": "Submit",
       "cancel": "Cancel"
     }
