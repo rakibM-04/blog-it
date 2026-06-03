@@ -8,10 +8,10 @@ import useQueryParams from "./useQueryParams";
 const usePostSearch = () => {
   const { categories } = useQueryParams();
   const history = useHistory();
-  const { data: { posts } = {}, isLoading } = useFetchPosts({ categories });
+  const { data: { posts } = {}, isLoading } = useFetchPosts(categories);
 
-  const updateQueryParams = ({ categories }) => {
-    history.replace(buildUrl(routes.home, { categories }));
+  const updateQueryParams = ({ categoryIds }) => {
+    history.replace(buildUrl(routes.home, { categories: categoryIds }));
   };
 
   return {

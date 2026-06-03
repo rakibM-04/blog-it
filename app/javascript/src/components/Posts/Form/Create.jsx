@@ -19,7 +19,7 @@ const Form = ({ handleSubmit }) => {
 
   return (
     <NeetoUIForm
-      className="flex h-full w-full flex-col justify-between p-12"
+      className="mt-6 flex h-full w-full flex-col justify-between"
       formikProps={{
         onSubmit: handleSubmit,
         initialValues: FORM_DEFAULT_VALUES,

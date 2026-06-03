@@ -6,4 +6,5 @@ export const useFetchCategories = () =>
     queryKey: ["categories"],
     queryFn: () => categoriesApi.fetch(),
     staleTime: 0,
+    cacheTime: 0,
   });

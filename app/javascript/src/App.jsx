@@ -4,7 +4,7 @@ import "./common/i18n";
 
 import React from "react";
 
-import PageNotFound from "common/PageNotFound";
+import PageNotFound from "commons/PageNotFound";
 import Dashboard from "components/Dashboard";
 import { CreatePost, ShowPost } from "components/Posts";
 import { t } from "i18next";

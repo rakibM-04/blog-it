@@ -1,6 +1,8 @@
 import axios from "axios";
 import { t } from "i18next";
+import { serializeKeysToSnakeCase } from "neetocist";
 import { Toastr } from "neetoui";
+import * as R from "ramda";
 import { getFromLocalStorage, setToLocalStorage } from "utils/storage";
 
 axios.defaults.baseURL = "/";
@@ -50,10 +52,24 @@ const handleErrorResponse = axiosErrorObject => {
   return Promise.reject(axiosErrorObject);
 };
 
-const registerIntercepts = () => {
+const registerResponseIntercepts = () => {
   axios.interceptors.response.use(handleSuccessResponse, error =>
     handleErrorResponse(error)
   );
+};
+
+const registerRequestInterceptors = () => {
+  const transformKeys = R.evolve({
+    data: serializeKeysToSnakeCase,
+    params: serializeKeysToSnakeCase,
+  });
+
+  axios.interceptors.request.use(transformKeys);
+};
+
+const registerIntercepts = () => {
+  registerRequestInterceptors();
+  registerResponseIntercepts();
 };
 
 export { setAuthHeaders, registerIntercepts };

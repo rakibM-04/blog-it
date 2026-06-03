@@ -13,6 +13,7 @@ const alias = {
   stream: require.resolve("stream-browserify"),
   apis: absolutePath("src/apis"),
   common: absolutePath("src/common"),
+  commons: absolutePath("src/components/commons"),
   components: absolutePath("src/components"),
   assets: absolutePath("../assets"),
   utils: absolutePath("src/utils"),
@@ -22,7 +23,10 @@ const alias = {
   hooks: absolutePath("src/hooks"),
   stores: absolutePath("src/stores"),
   neetoui: path.resolve(process.cwd(), "node_modules/@bigbinary/neetoui"),
-  neetoicons: path.resolve(process.cwd(), "node_modules/@bigbinary/neeto-icons"),
+  neetoicons: path.resolve(
+    process.cwd(),
+    "node_modules/@bigbinary/neeto-icons"
+  ),
   neetocist: path.resolve(process.cwd(), "node_modules/@bigbinary/neeto-cist"),
   reactquery: path.resolve(process.cwd(), "node_modules/@tanstack/react-query"),
 };
