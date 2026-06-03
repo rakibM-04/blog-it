@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index create show], param: :slug
     resources :categories, only: %i[index create]
     resources :users, only: %i[index create]
-    resource :session, only: :create
+    resource :session, only: %i[create destroy]
   end
 
   root "home#index"
