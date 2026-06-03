@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :load_post!, only: :show
-  before_action :load_posts!, only: :index
+  before_action :load_posts, only: :index
 
   def index
     if params[:categories].present?
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       @post = Post.find_by!(slug: params[:slug])
     end
 
-    def load_posts!
+    def load_posts
       @posts = Post.all
     end
 

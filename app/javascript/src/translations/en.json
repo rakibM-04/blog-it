@@ -23,7 +23,43 @@
       "descriptionRequired": "The 'Description' field is required",
       "categories": "Categories",
       "submit": "Submit",
-      "cancel": "Cancel"
+      "reset": "Reset"
+    }
+  },
+  "users": {
+    "form": {
+      "signup": {
+        "title": "Signup",
+        "email": "Email",
+        "invalidEmailFormat": "Invalid email format",
+        "emailRequired": "Email is required",
+        "name": "Name",
+        "nameMaxLength": "Name should be of at most {{size}} characters.",
+        "nameRequired": "Name is required",
+        "organization": "Organization",
+        "organizationRequired": "Organization is required",
+        "password": "Password",
+        "passwordMinLength": "Password must be of at least {{size}} characters!",
+        "passwordRequired": "Password is required",
+        "passwordConfirmation": "Confirm Password",
+        "passwordConfirmationMismatch": "Passwords must match!",
+        "passwordConfirmationRequired": "Password confirmation is required",
+        "submit": "Submit",
+        "reset": "Reset",
+        "existingUser": "Existing user?"
+      },
+      "login": {
+        "title": "Login",
+        "email": "Email",
+        "invalidEmailFormat": "Invalid email format",
+        "emailRequired": "Email is required",
+        "password": "Password",
+        "passwordMinLength": "Password must be of at least {{size}} characters!",
+        "passwordRequired": "Password is required",
+        "submit": "Submit",
+        "reset": "Reset",
+        "newUser": "New user?"
+      }
     }
   }
 }

@@ -7,9 +7,21 @@ const login = payload =>
 
 const logout = () => axios.delete("/session");
 
-const signup = payload =>
+const signup = ({
+  name,
+  email,
+  organization,
+  password,
+  passwordConfirmation: password_confirmation,
+}) =>
   axios.post("/users", {
-    user: payload,
+    user: {
+      name,
+      email,
+      password,
+      password_confirmation,
+      organization,
+    },
   });
 
 const authApi = {

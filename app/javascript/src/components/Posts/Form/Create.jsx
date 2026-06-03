@@ -40,8 +40,9 @@ const Form = ({ handleSubmit }) => {
       <div className="flex gap-4 self-end">
         <Button
           className="self-start"
-          label={t("posts.form.cancel")}
+          label={t("posts.form.reset")}
           style="tertiary"
+          type="reset"
         />
         <Button
           className="themed-button self-start"

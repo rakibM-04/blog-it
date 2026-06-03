@@ -1,10 +1,12 @@
 const routes = {
-  home: "/app",
+  home: "/",
   all: "*",
   posts: {
-    create: "/app/posts/create",
-    show: "/app/posts/show/:slug",
+    create: "/posts/create",
+    show: "/posts/show/:slug",
   },
+  login: "/login",
+  signup: "/signup",
 };
 
 export default routes;
