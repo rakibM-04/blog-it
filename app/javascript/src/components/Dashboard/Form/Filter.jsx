@@ -3,7 +3,7 @@ import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { Pane, Spinner, Typography } from "neetoui";
 import { useTranslation } from "react-i18next";
 
-import { FORM_INITIAL_VALUES, FORM_VALIDATION_SCHEMA } from "../constants";
+import { FORM_INITIAL_VALUES, FORM_VALIDATION_SCHEMA } from "./constants";
 
 const Filter = ({ isOpen, onClose, filters, handleSubmit }) => {
   const { data: { categories } = {}, isLoading } = useFetchCategories();

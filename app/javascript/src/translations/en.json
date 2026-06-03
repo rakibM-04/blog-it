@@ -18,7 +18,9 @@
     "create": "Create Post",
     "form": {
       "title": "Title",
+      "titleRequired": "The 'Title' field is required",
       "description": "Description",
+      "descriptionRequired": "The 'Description' field is required",
       "categories": "Categories",
       "submit": "Submit",
       "cancel": "Cancel"
