@@ -1042,6 +1042,11 @@
   resolved "https://registry.npmjs.org/@bigbinary/neeto-icons/-/neeto-icons-1.20.64.tgz"
   integrity sha512-naGxIyhd28eD89caMJrgUlR+xhmM0T6weIu97Y76p6UNVdxSM4oNK0NGe19th7BNT7uqkx1JD4HED3RG5Jv5sg==
 
+"@bigbinary/neeto-molecules@^5.1.18":
+  version "5.1.18"
+  resolved "https://registry.yarnpkg.com/@bigbinary/neeto-molecules/-/neeto-molecules-5.1.18.tgz#f8d804bb7469a9267e1bf3ff7711ad62a70c7e84"
+  integrity sha512-aQKsSRS2LwKiiX8NEctKGhwHTeGsh8xjGqV8Owh26BKS69U6tcGq+0KGzyNkU6FNN8//E8FmvqN8sBl6t3+0Bg==
+
 "@bigbinary/neetoui@^8.8.1":
   version "8.8.1"
   resolved "https://registry.npmjs.org/@bigbinary/neetoui/-/neetoui-8.8.1.tgz"

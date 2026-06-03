@@ -22,13 +22,10 @@ const alias = {
   constants: absolutePath("src/constants"),
   hooks: absolutePath("src/hooks"),
   stores: absolutePath("src/stores"),
-  neetoui: path.resolve(process.cwd(), "node_modules/@bigbinary/neetoui"),
-  neetoicons: path.resolve(
-    process.cwd(),
-    "node_modules/@bigbinary/neeto-icons"
-  ),
-  neetocist: path.resolve(process.cwd(), "node_modules/@bigbinary/neeto-cist"),
-  reactquery: path.resolve(process.cwd(), "node_modules/@tanstack/react-query"),
+  neetoui: "@bigbinary/neetoui",
+  neetoicons: "@bigbinary/neeto-icons",
+  neetocist: "@bigbinary/neeto-cist",
+  reactquery: "@tanstack/react-query",
 };
 
 export { alias };

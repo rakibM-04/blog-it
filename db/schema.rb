@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_01_104209) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_03_073521) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_01_104209) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "organization_id", null: false
+    t.string "authentication_token"
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 

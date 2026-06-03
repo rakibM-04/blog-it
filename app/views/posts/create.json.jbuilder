@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.notice t("post.successfully_created")
+json.notice t("successfully_created", entity: "Post")

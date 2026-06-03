@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_secure_password
+  has_secure_token :authentication_token
 
   MAX_NAME_LENGTH = 35
   MIN_PASSWORD_LENGTH = 6

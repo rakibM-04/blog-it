@@ -63,6 +63,7 @@
     "@bigbinary/neeto-datepicker": "^1.0.4",
     "@bigbinary/neeto-hotkeys": "1.0.4",
     "@bigbinary/neeto-icons": "1.20.64",
+    "@bigbinary/neeto-molecules": "^5.1.18",
     "@bigbinary/neetoui": "^8.8.1",
     "@floating-ui/react": "^0.26.6",
     "@hotwired/stimulus": "^3.2.2",
