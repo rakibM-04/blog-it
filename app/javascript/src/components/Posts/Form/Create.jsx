@@ -5,7 +5,12 @@ import { Spinner } from "neetoui";
 import { FORM_DEFAULT_VALUES, FORM_VALIDATION_SCHEMA } from "./constants";
 import Inputs from "./Inputs";
 
-const Create = ({ initialValues = FORM_DEFAULT_VALUES, handleSubmit }) => {
+const Create = ({
+  initialValues = FORM_DEFAULT_VALUES,
+  handleSubmit,
+  mode,
+  setMode,
+}) => {
   const { data: { categories } = {}, isLoading } = useFetchCategories();
 
   if (isLoading) return <Spinner />;
@@ -19,7 +24,7 @@ const Create = ({ initialValues = FORM_DEFAULT_VALUES, handleSubmit }) => {
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >
-      <Inputs categories={categories} />
+      <Inputs {...{ categories, mode, setMode }} />
     </NeetoUIForm>
   );
 };

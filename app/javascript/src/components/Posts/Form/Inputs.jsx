@@ -1,9 +1,12 @@
 import { useFormikContext } from "formik";
 import { t } from "i18next";
+import { ActionDropdown } from "neetoui";
 import { Button, Input, Select, Textarea } from "neetoui/formik";
 
-const Inputs = ({ categories }) => {
-  const { resetForm } = useFormikContext();
+import { MODES } from "./constants";
+
+const Inputs = ({ categories, mode, setMode }) => {
+  const { resetForm, submitForm } = useFormikContext();
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -24,11 +27,25 @@ const Inputs = ({ categories }) => {
           type="reset"
           onClick={resetForm}
         />
-        <Button
+        <ActionDropdown
           className="themed-button self-start"
-          label={t("posts.form.submit")}
+          label={t(`posts.form.${mode}`)}
           type="submit"
-        />
+          onClick={() => submitForm()}
+        >
+          <ActionDropdown.Menu>
+            <ActionDropdown.MenuItem.Button
+              onClick={() => setMode(MODES.publish)}
+            >
+              {t("posts.form.published")}
+            </ActionDropdown.MenuItem.Button>
+            <ActionDropdown.MenuItem.Button
+              onClick={() => setMode(MODES.draft)}
+            >
+              {t("posts.form.drafted")}
+            </ActionDropdown.MenuItem.Button>
+          </ActionDropdown.Menu>
+        </ActionDropdown>
       </div>
     </div>
   );

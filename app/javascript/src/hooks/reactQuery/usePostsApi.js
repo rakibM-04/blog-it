@@ -17,8 +17,8 @@ export const useShowPost = ({ slug }) =>
 
 export const useCreatePost = () =>
   useMutation({
-    mutationFn: ({ title, description, categoryIds }) =>
-      postsApi.create({ title, description, categoryIds }),
+    mutationFn: ({ title, description, categoryIds, status }) =>
+      postsApi.create({ title, description, categoryIds, status }),
   });
 
 export const useUpdatePost = () =>
