@@ -11,14 +11,14 @@ import {
 
 const Login = ({ handleSubmit }) => (
   <NeetoUIForm
-    className="mb-32 flex h-full flex-col justify-center"
+    className="flex h-full flex-col"
     formikProps={{
       onSubmit: handleSubmit,
       initialValues: LOGIN_FORM_DEFAULT_VALUES,
       validationSchema: LOGIN_FORM_VALIDATION_SCHEMA,
     }}
   >
-    <div className="flex flex-col gap-4 rounded-md  p-8">
+    <div className="mt-12 flex flex-col gap-4 rounded-md">
       <Input
         required
         label={t("users.form.login.email")}

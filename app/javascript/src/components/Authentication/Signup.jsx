@@ -22,7 +22,7 @@ const Signup = () => {
         email,
         password,
         passwordConfirmation,
-        organization: organization.id,
+        organizationId: organization.id,
       },
       {
         onSuccess: () => {
@@ -33,7 +33,7 @@ const Signup = () => {
   };
 
   return (
-    <Scaffold title={t("users.form.signup.title")}>
+    <Scaffold sidebar={false} title={t("users.form.signup.title")}>
       <SignupForm handleSubmit={handleSubmit} />
     </Scaffold>
   );

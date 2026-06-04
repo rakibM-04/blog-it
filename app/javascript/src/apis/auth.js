@@ -10,17 +10,17 @@ const logout = () => axios.delete("/session");
 const signup = ({
   name,
   email,
-  organization,
+  organizationId,
   password,
-  passwordConfirmation: password_confirmation,
+  passwordConfirmation,
 }) =>
   axios.post("/users", {
     user: {
       name,
       email,
       password,
-      password_confirmation,
-      organization,
+      passwordConfirmation,
+      organizationId,
     },
   });
 

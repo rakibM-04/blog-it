@@ -27,6 +27,7 @@
     }
   },
   "users": {
+    "logout": "Logout",
     "form": {
       "signup": {
         "title": "Signup",

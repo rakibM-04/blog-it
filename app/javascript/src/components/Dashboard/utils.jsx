@@ -8,7 +8,7 @@ export const createPostEntries = posts =>
 export const createCategoryTags = categories =>
   categories.map(category => (
     <Tag
-      className="scale-95 bg-black text-white"
+      className="bg-black text-white"
       key={category}
       label={category}
       size="small"

@@ -8,14 +8,14 @@ export const useSignup = () =>
       email,
       password,
       passwordConfirmation,
-      organization,
+      organizationId,
     }) =>
       authApi.signup({
         name,
         email,
         password,
         passwordConfirmation,
-        organization,
+        organizationId,
       }),
   });
 

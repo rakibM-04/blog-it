@@ -34,7 +34,9 @@
       "neetoicons": ["node_modules/@bigbinary/neeto-icons"],
       "neetoicons/*": ["node_modules/@bigbinary/neeto-icons/*"],
       "neetocist": ["node_modules/@bigbinary/neeto-cist"],
-      "neetocist/*": ["node_modules/@bigbinary/neeto-cist/*"]
+      "neetocist/*": ["node_modules/@bigbinary/neeto-cist/*"],
+      "neetomolecules": ["node_modules/@bigbinary/neeto-molecules"],
+      "neetomolecules/*": ["node_modules/@bigbinary/neeto-molecules/*"]
     },
     "pretty": true,
     "experimentalDecorators": true,

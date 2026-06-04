@@ -26,6 +26,7 @@ const alias = {
   neetoicons: "@bigbinary/neeto-icons",
   neetocist: "@bigbinary/neeto-cist",
   reactquery: "@tanstack/react-query",
+  neetomolecules: "@bigbinary/neeto-molecules"
 };
 
 export { alias };

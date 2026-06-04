@@ -22,7 +22,7 @@ const Signup = ({ handleSubmit }) => {
         validationSchema: SIGNUP_FORM_VALIDATION_SCHEMA,
       }}
     >
-      <div className="flex flex-col gap-4 rounded-md  p-8">
+      <div className="flex flex-col gap-4 rounded-md">
         <Input
           required
           label={t("users.form.signup.name")}

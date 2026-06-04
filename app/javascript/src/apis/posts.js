@@ -9,9 +9,9 @@ const fetch = categories =>
 
 const show = slug => axios.get(`/posts/${slug}`);
 
-const create = ({ title, description, categoryIds: category_ids }) =>
+const create = ({ title, description, categoryIds }) =>
   axios.post("/posts", {
-    post: { user_id: 1, organization_id: 1, title, description, category_ids },
+    post: { title, description, categoryIds },
   });
 
 const postsApi = { fetch, show, create };

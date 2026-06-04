@@ -26,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <Scaffold title={t("users.form.login.title")}>
+    <Scaffold sidebar={false} title={t("users.form.login.title")}>
       <LoginForm handleSubmit={handleSubmit} />
     </Scaffold>
   );

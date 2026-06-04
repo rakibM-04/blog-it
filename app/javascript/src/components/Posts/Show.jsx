@@ -1,3 +1,4 @@
+import Scaffold from "commons/Scaffold";
 import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { Avatar, Spinner, Typography } from "neetoui";
@@ -22,9 +23,8 @@ const Show = () => {
   }
 
   return (
-    <div className="flex h-full flex-col gap-4 overflow-hidden p-8">
-      <div className="flex flex-col gap-2 border-b-2 pb-4">
-        <Typography className="bold text-4xl capitalize">{title}</Typography>
+    <Scaffold title={title}>
+      <div className="relative bottom-4 flex flex-col border-b-2 pb-4">
         <div className="flex">{createCategoryTags(categories)}</div>
         <div className="mt-4 flex items-center gap-3">
           <Avatar
@@ -41,10 +41,10 @@ const Show = () => {
           </div>
         </div>
       </div>
-      <Typography className="mt-4 overflow-scroll whitespace-pre text-wrap">
+      <Typography className="overflow-scroll whitespace-pre text-wrap">
         {description}
       </Typography>
-    </div>
+    </Scaffold>
   );
 };
 

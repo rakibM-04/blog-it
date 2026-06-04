@@ -15,7 +15,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
+    post = current_user.posts.new(post_params)
+    post.organization = current_user.organization
     post.save!
     render
   end
@@ -31,10 +32,10 @@ class PostsController < ApplicationController
     end
 
     def load_posts
-      @posts = Post.all
+      @posts = current_user.organization.posts
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :organization_id, :user_id, category_ids: [])
+      params.require(:post).permit(:title, :description, category_ids: [])
     end
 end
