@@ -56,7 +56,12 @@ const Filter = ({ isOpen, onClose, filters, handleSubmit }) => {
             label={t("blogPosts.filters.submit")}
             type="submit"
           />
-          <Button label={t("blogPosts.filters.cancel")} style="secondary" />
+          <Button
+            disabled={false}
+            label={t("blogPosts.filters.cancel")}
+            style="secondary"
+            onClick={onClose}
+          />
         </Pane.Footer>
       </NeetoUIForm>
     </Pane>
