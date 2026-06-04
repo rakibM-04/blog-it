@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useQueryClient } from "@tanstack/react-query";
 import Scaffold from "commons/Scaffold";
 import { useShowPost, useUpdatePost } from "hooks/reactQuery/usePostsApi";
@@ -6,9 +8,13 @@ import { useTranslation } from "react-i18next";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 
-import CreateForm from "./Form/Create";
+import Form from "./Form";
+import { MODES } from "./Form/constants";
+import EditActions from "./Form/EditActions";
 
 const Edit = () => {
+  const [mode, setMode] = useState(MODES.publish);
+
   const mutation = useUpdatePost();
   const history = useHistory();
   const { t } = useTranslation();
@@ -37,8 +43,9 @@ const Edit = () => {
 
   return (
     <Scaffold title={t("posts.edit")}>
-      <CreateForm
-        handleSubmit={handleSubmit}
+      <Form
+        actions={EditActions}
+        {...{ mode, setMode, handleSubmit }}
         initialValues={{
           title,
           description,

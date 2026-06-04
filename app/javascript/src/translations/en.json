@@ -26,7 +26,8 @@
       "submit": "Submit",
       "reset": "Reset",
       "published": "Publish",
-      "drafted": "Save as draft"
+      "drafted": "Save as draft",
+      "delete": "Delete"
     }
   },
   "users": {

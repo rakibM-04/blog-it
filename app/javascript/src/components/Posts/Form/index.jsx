@@ -5,11 +5,12 @@ import { Spinner } from "neetoui";
 import { FORM_DEFAULT_VALUES, FORM_VALIDATION_SCHEMA } from "./constants";
 import Inputs from "./Inputs";
 
-const Create = ({
+const Form = ({
   initialValues = FORM_DEFAULT_VALUES,
   handleSubmit,
   mode,
   setMode,
+  actions,
 }) => {
   const { data: { categories } = {}, isLoading } = useFetchCategories();
 
@@ -24,9 +25,9 @@ const Create = ({
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >
-      <Inputs {...{ categories, mode, setMode }} />
+      <Inputs {...{ categories, mode, setMode, actions }} />
     </NeetoUIForm>
   );
 };
 
-export default Create;
+export default Form;

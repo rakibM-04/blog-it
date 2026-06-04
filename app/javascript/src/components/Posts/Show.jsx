@@ -1,8 +1,11 @@
 import Scaffold from "commons/Scaffold";
 import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
-import { Avatar, Spinner, Typography } from "neetoui";
+import { t } from "i18next";
+import { Edit } from "neetoicons";
+import { Avatar, Button, Spinner, Typography } from "neetoui";
 import { useParams } from "react-router-dom";
+import routes from "routes";
 import { formatDate } from "utils/date";
 
 const Show = () => {
@@ -25,7 +28,17 @@ const Show = () => {
   const categoryNames = categories.map(({ name }) => name);
 
   return (
-    <Scaffold title={title}>
+    <Scaffold
+      title={title}
+      toolbar={
+        <Button
+          icon={Edit}
+          label={t("posts.edit")}
+          style="secondary"
+          to={routes.posts.edit.replace(":slug", slug)}
+        />
+      }
+    >
       <div className="relative bottom-4 flex flex-col border-b-2 pb-4">
         <div className="flex">{createCategoryTags(categoryNames)}</div>
         <div className="mt-4 flex items-center gap-3">

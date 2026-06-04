@@ -6,8 +6,9 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 
+import Form from "./Form";
 import { MODES } from "./Form/constants";
-import CreateForm from "./Form/Create";
+import CreateActions from "./Form/CreateActions";
 
 const Create = () => {
   const mutation = useCreatePost();
@@ -30,7 +31,7 @@ const Create = () => {
 
   return (
     <Scaffold title={t("posts.create")}>
-      <CreateForm {...{ mode, setMode, handleSubmit }} />
+      <Form {...{ mode, setMode, handleSubmit }} actions={CreateActions} />
     </Scaffold>
   );
 };
