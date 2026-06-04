@@ -19,6 +19,8 @@ const update = ({ slug, title, description, categoryIds, status }) =>
     post: { title, description, categoryIds, status },
   });
 
-const postsApi = { fetch, show, create, update };
+const destroy = slug => axios.delete(`/posts/${slug}`);
+
+const postsApi = { fetch, show, create, update, destroy };
 
 export default postsApi;

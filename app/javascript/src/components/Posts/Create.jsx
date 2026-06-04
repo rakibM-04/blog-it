@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Scaffold from "commons/Scaffold";
+import Scaffold from "commons/Scaffold/Scaffold";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ const Create = () => {
   const [mode, setMode] = useState(MODES.publish);
 
   const handleSubmit = async ({ title, description, categories }) => {
-    const categoryIds = categories.map(category => category.id);
+    const categoryIds = categories?.map(category => category.id) ?? [];
     mutation.mutate(
       { title, description, categoryIds, status: mode },
       {

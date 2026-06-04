@@ -2,9 +2,8 @@ import { useFormikContext } from "formik";
 import { t } from "i18next";
 import { Input, Select, Textarea } from "neetoui/formik";
 
-const Inputs = ({ categories, mode, setMode, actions }) => {
+const Inputs = ({ categories, mode, setMode, actions: Actions }) => {
   const { resetForm, submitForm } = useFormikContext();
-  const Actions = actions;
 
   return (
     <div className="flex w-full flex-col gap-4">

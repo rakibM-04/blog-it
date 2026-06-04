@@ -1,4 +1,4 @@
-import Scaffold from "commons/Scaffold";
+import Scaffold from "commons/Scaffold/Scaffold";
 import { useLogin } from "hooks/reactQuery/useAuthApi";
 import { t } from "i18next";
 import routes from "routes";

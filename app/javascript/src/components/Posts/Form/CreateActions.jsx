@@ -26,7 +26,7 @@ const CreateActions = ({ mode, setMode, resetForm, submitForm }) => (
           {t("posts.form.published")}
         </ActionDropdown.MenuItem.Button>
         <ActionDropdown.MenuItem.Button onClick={() => setMode(MODES.draft)}>
-          {t("posts.form.drafted")}
+          {t("posts.form.draft")}
         </ActionDropdown.MenuItem.Button>
       </ActionDropdown.Menu>
     </ActionDropdown>

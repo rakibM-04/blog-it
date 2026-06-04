@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Scaffold from "commons/Scaffold";
+import Scaffold from "commons/Scaffold/Scaffold";
 import usePostSearch from "hooks/usePostSearch";
 import { Filter as FilterIcon } from "neetoicons";
 import { Button, Spinner } from "neetoui";

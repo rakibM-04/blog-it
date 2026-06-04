@@ -1,8 +1,12 @@
 import { useState } from "react";
 
 import { useQueryClient } from "@tanstack/react-query";
-import Scaffold from "commons/Scaffold";
-import { useShowPost, useUpdatePost } from "hooks/reactQuery/usePostsApi";
+import Scaffold from "commons/Scaffold/Scaffold";
+import {
+  useDeletePost,
+  useShowPost,
+  useUpdatePost,
+} from "hooks/reactQuery/usePostsApi";
 import { Spinner } from "neetoui";
 import { useTranslation } from "react-i18next";
 import { useHistory, useParams } from "react-router-dom";
@@ -15,7 +19,9 @@ import EditActions from "./Form/EditActions";
 const Edit = () => {
   const [mode, setMode] = useState(MODES.publish);
 
-  const mutation = useUpdatePost();
+  const updateMutation = useUpdatePost();
+  const deleteMutation = useDeletePost();
+
   const history = useHistory();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -29,16 +35,25 @@ const Edit = () => {
   if (isLoading) return <Spinner />;
 
   const handleSubmit = async ({ title, description, categories }) => {
-    const categoryIds = categories.map(category => category.id);
-    mutation.mutate(
-      { slug, title, description, categoryIds },
-      {
+    if (mode === MODES.delete) {
+      deleteMutation.mutate(slug, {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["posts", "show", slug] });
-          history.push(routes.home);
+          queryClient.invalidateQueries({ queryKey: ["posts", slug] });
+          history.replace(routes.home);
         },
-      }
-    );
+      });
+    } else {
+      const categoryIds = categories?.map(category => category.id) ?? [];
+      updateMutation.mutate(
+        { slug, title, description, categoryIds },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["posts", slug] });
+            history.push(routes.home);
+          },
+        }
+      );
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import Scaffold from "commons/Scaffold";
+import Scaffold from "commons/Scaffold/Scaffold";
 import { useSignup } from "hooks/reactQuery/useAuthApi";
 import { t } from "i18next";
 import { Redirect } from "react-router-dom";

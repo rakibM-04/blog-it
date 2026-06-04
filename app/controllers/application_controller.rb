@@ -2,9 +2,12 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  include Pundit::Authorization
+
   before_action :authenticate_user_using_x_auth_token
 
   rescue_from StandardError, with: :handle_api_exception
+  rescue_from Pundit::NotAuthorizedError, with: :handle_authorization_error
 
   def handle_api_exception(exception)
     case exception
@@ -15,7 +18,7 @@ class ApplicationController < ActionController::Base
       render_error(exception, :internal_server_error)
 
     when ActiveRecord::RecordNotFound
-      render_error("Couldn't find #{exception.model}", :not_found)
+      render_error(t("not_found", entity: exception.model), :not_found)
 
     when ActiveRecord::RecordNotUnique
       render_error(exception.message)
@@ -77,6 +80,10 @@ class ApplicationController < ActionController::Base
       else
         render_error(t("session.could_not_auth"), :unauthorized)
       end
+    end
+
+    def handle_authorization_error
+      render_error(t("authorization.denied"), :forbidden)
     end
 
     def current_user

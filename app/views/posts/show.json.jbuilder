@@ -3,10 +3,10 @@
 json.post do
   json.extract! @post,
     :title,
-    :created_at,
     :description,
     :status
 
+  json.published_at @post.updated_at
   json.author @post.user.name
   json.categories @post.categories
 end

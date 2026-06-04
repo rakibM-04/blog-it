@@ -26,7 +26,7 @@
       "submit": "Submit",
       "reset": "Reset",
       "published": "Publish",
-      "drafted": "Save as draft",
+      "draft": "Save as draft",
       "delete": "Delete"
     }
   },

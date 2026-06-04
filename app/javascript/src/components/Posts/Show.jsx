@@ -1,4 +1,4 @@
-import Scaffold from "commons/Scaffold";
+import Scaffold from "commons/Scaffold/Scaffold";
 import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
@@ -13,7 +13,7 @@ const Show = () => {
   const {
     isLoading,
     data: {
-      post: { title, description, created_at, author, categories } = {},
+      post: { title, description, published_at, author, categories } = {},
     } = {},
   } = useShowPost({ slug });
 
@@ -51,7 +51,7 @@ const Show = () => {
           <div>
             <Typography>{author}</Typography>
             <Typography className="text-sm text-gray-400">
-              {formatDate(created_at)}
+              {formatDate(published_at)}
             </Typography>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "reactquery";
 
 export const useFetchPosts = (categories = []) =>
   useQuery({
-    queryKey: ["posts", "fetch", categories],
+    queryKey: ["posts", categories],
     queryFn: () => postsApi.fetch(categories),
     staleTime: 0,
     cacheTime: 0,
@@ -11,7 +11,7 @@ export const useFetchPosts = (categories = []) =>
 
 export const useShowPost = ({ slug }) =>
   useQuery({
-    queryKey: ["posts", "show", slug],
+    queryKey: ["posts", slug],
     queryFn: () => postsApi.show(slug),
   });
 
@@ -25,4 +25,9 @@ export const useUpdatePost = () =>
   useMutation({
     mutationFn: ({ slug, title, description, categoryIds }) =>
       postsApi.update({ slug, title, description, categoryIds }),
+  });
+
+export const useDeletePost = () =>
+  useMutation({
+    mutationFn: slug => postsApi.destroy(slug),
   });

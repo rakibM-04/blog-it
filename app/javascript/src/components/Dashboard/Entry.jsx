@@ -6,7 +6,7 @@ import { buildUrl } from "utils/url";
 
 import { createCategoryTags } from "./utils";
 
-const Entry = ({ title, created_at, slug, categories, author }) => (
+const Entry = ({ title, published_at, slug, categories, author }) => (
   <div className="flex flex-col items-start gap-1 border-b-2 border-slate-200 py-4">
     <Link to={buildUrl(routes.posts.show, { slug })}>
       <Typography className="capitalize hover:cursor-pointer" style="h1">
@@ -16,7 +16,7 @@ const Entry = ({ title, created_at, slug, categories, author }) => (
     <div className="flex">{createCategoryTags(categories)}</div>
     <Typography className="mt-2">{author}</Typography>
     <Typography className="text-gray-400" style="h5">
-      {formatDate(created_at)}
+      {formatDate(published_at)}
     </Typography>
   </div>
 );

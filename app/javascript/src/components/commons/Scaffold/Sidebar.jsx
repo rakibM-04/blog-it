@@ -40,6 +40,12 @@ const Sidebar = () => {
         icon={<Edit />}
         name={t("posts.create")}
         route={routes.posts.create}
+        isActive={(_, location) =>
+          matchesAnyPath(location.pathname, [
+            routes.posts.create,
+            routes.posts.edit,
+          ])
+        }
       />
       <div className="mt-auto">
         <Dropdown

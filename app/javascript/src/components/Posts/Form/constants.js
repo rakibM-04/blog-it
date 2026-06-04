@@ -15,6 +15,6 @@ export const FORM_VALIDATION_SCHEMA = yup.object().shape({
 
 export const MODES = {
   publish: "published",
-  draft: "drafted",
+  draft: "draft",
   delete: "delete",
 };
