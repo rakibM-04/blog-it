@@ -4,6 +4,7 @@ const routes = {
   posts: {
     create: "/posts/create",
     show: "/posts/show/:slug",
+    edit: "/posts/edit/:slug",
   },
   login: "/login",
   signup: "/signup",

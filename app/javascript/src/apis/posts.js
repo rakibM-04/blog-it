@@ -14,6 +14,11 @@ const create = ({ title, description, categoryIds }) =>
     post: { title, description, categoryIds },
   });
 
-const postsApi = { fetch, show, create };
+const update = ({ slug, title, description, categoryIds }) =>
+  axios.put(`/posts/${slug}`, {
+    post: { title, description, categoryIds },
+  });
+
+const postsApi = { fetch, show, create, update };
 
 export default postsApi;

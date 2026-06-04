@@ -16,6 +16,7 @@
   },
   "posts": {
     "create": "Create Post",
+    "edit": "Edit Post",
     "form": {
       "title": "Title",
       "titleRequired": "The 'Title' field is required",

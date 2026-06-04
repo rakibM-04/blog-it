@@ -5,7 +5,7 @@ import { Spinner } from "neetoui";
 import { FORM_DEFAULT_VALUES, FORM_VALIDATION_SCHEMA } from "./constants";
 import Inputs from "./Inputs";
 
-const Create = ({ handleSubmit }) => {
+const Create = ({ initialValues = FORM_DEFAULT_VALUES, handleSubmit }) => {
   const { data: { categories } = {}, isLoading } = useFetchCategories();
 
   if (isLoading) return <Spinner />;
@@ -15,7 +15,7 @@ const Create = ({ handleSubmit }) => {
       className="mt-12 flex h-full w-full flex-col"
       formikProps={{
         onSubmit: handleSubmit,
-        initialValues: FORM_DEFAULT_VALUES,
+        initialValues,
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >

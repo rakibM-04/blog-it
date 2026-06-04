@@ -7,5 +7,5 @@ json.post do
     :description
 
   json.author @post.user.name
-  json.categories @post.categories.map(&:name)
+  json.categories @post.categories
 end

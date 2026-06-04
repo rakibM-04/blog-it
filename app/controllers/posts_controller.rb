@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :load_post!, only: :show
+  before_action :load_post!, only: %i[show update]
   before_action :load_posts, only: :index
 
   def index
@@ -12,6 +12,11 @@ class PostsController < ApplicationController
     end
 
     render
+  end
+
+  def update
+    @post.update(post_params)
+    render_notice(t("successfully_updated", entity: "Post"))
   end
 
   def create
