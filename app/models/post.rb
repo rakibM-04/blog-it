@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   MAX_TITLE_LENGTH = 125
   MAX_DESCRIPTION_LENGTH = 10000
 
-  enum :status, { draft: "draft", published: "published" }
+  enum :status, { draft: "draft", published: "published" }, prefix: true
 
   belongs_to :user, counter_cache: true
   belongs_to :organization
@@ -51,8 +51,6 @@ class Post < ApplicationRecord
     end
 
     def set_publish_date
-      if will_save_change_to_status? && published? || status == "published"
-        self.published_at = Time.current
-      end
+      self.published_at = Time.current if status_published?
     end
 end

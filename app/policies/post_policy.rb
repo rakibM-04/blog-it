@@ -9,7 +9,7 @@ class PostPolicy
   end
 
   def show?
-    user.organization.id === post.organization.id && (post.published? || post.user_id == user.id)
+    user.organization.id === post.organization.id && (post.status_published? || post.user_id == user.id)
   end
 
   def update?

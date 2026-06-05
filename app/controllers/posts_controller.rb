@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @posts = current_user.posts.order(updated_at: :desc)
     return render :personal if params.key?(:personal)
 
-    @posts = policy_scope(Post).published.order(updated_at: :desc)
+    @posts = policy_scope(Post).status_published.order(updated_at: :desc)
     @posts = @posts.where(categories: { id: params[:categories] }) if params[:categories].present?
   end
 

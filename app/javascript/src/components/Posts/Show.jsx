@@ -9,6 +9,8 @@ import routes from "routes";
 import { formatDate } from "utils/date";
 import { getFromLocalStorage } from "utils/storage";
 
+import { MODES } from "./constants";
+
 const Show = () => {
   const { slug } = useParams();
   const {
@@ -42,7 +44,7 @@ const Show = () => {
     <Scaffold
       title={title}
       titleTag={
-        status === "draft" && (
+        status === MODES.draft && (
           <Tag className="capitalize" label={status} style="danger" />
         )
       }
