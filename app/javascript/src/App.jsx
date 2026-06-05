@@ -29,12 +29,34 @@ const App = () => {
         <BrowserRouter>
           <ToastContainer />
           <Switch>
-            <Route exact component={CreatePost} path={routes.posts.create} />
-            <Route exact component={ShowPost} path={routes.posts.show} />
-            <Route exact component={EditPost} path={routes.posts.edit} />
-            <Route exact component={MyBlogPosts} path={routes.posts.personal} />
-            <Route component={Login} path={routes.login} />
-            <Route component={Signup} path={routes.signup} />
+            <PrivateRoute
+              exact
+              component={CreatePost}
+              condition={isLoggedIn}
+              path={routes.posts.create}
+              redirectRoute={routes.login}
+            />
+            <PrivateRoute
+              exact
+              component={ShowPost}
+              condition={isLoggedIn}
+              path={routes.posts.show}
+              redirectRoute={routes.login}
+            />
+            <PrivateRoute
+              exact
+              component={EditPost}
+              condition={isLoggedIn}
+              path={routes.posts.edit}
+              redirectRoute={routes.login}
+            />
+            <PrivateRoute
+              exact
+              component={MyBlogPosts}
+              condition={isLoggedIn}
+              path={routes.posts.personal}
+              redirectRoute={routes.login}
+            />
             <PrivateRoute
               exact
               component={Dashboard}
@@ -42,7 +64,14 @@ const App = () => {
               path={routes.home}
               redirectRoute={routes.login}
             />
-            <Route component={PageNotFound} path={routes.all} />
+            <Route component={Login} path={routes.login} />
+            <Route component={Signup} path={routes.signup} />
+            <PrivateRoute
+              component={PageNotFound}
+              condition={isLoggedIn}
+              path={routes.all}
+              redirectRoute={routes.login}
+            />
           </Switch>
         </BrowserRouter>
       </QueryClientProvider>

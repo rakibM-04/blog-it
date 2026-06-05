@@ -1,31 +1,19 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { MODES } from "components/constants";
 import { useDeletePost, useUpdatePost } from "hooks/reactQuery/usePostsApi";
+import { t } from "i18next";
 import { MenuHorizontal } from "neetoicons";
 import { Dropdown } from "neetoui";
 
 const DraftOptions = ({ slug }) => {
-  const deleteMutation = useDeletePost();
-  const updateMutation = useUpdatePost();
-  const queryClient = useQueryClient();
+  const deleteMutation = useDeletePost(slug);
+  const updateMutation = useUpdatePost(slug);
 
   const deleteHandler = () => {
-    deleteMutation.mutate(
-      { slug, quiet: true },
-      {
-        onSuccess: () =>
-          queryClient.invalidateQueries({ queryKeys: ["posts"] }),
-      }
-    );
+    deleteMutation.mutate({ quiet: true });
   };
 
   const updateHandler = () => {
-    updateMutation.mutate(
-      { slug, quiet: true, status: "published" },
-      {
-        onSuccess: () =>
-          queryClient.invalidateQueries({ queryKeys: ["posts"] }),
-      }
-    );
+    updateMutation.mutate({ quiet: true, status: MODES.published });
   };
 
   return (
@@ -36,7 +24,7 @@ const DraftOptions = ({ slug }) => {
     >
       <Dropdown.Menu>
         <Dropdown.MenuItem.Button className="p-2" onClick={updateHandler}>
-          Publish
+          {t("posts.form.publish")}
         </Dropdown.MenuItem.Button>
         <Dropdown.Divider />
         <Dropdown.MenuItem.Button
@@ -44,7 +32,7 @@ const DraftOptions = ({ slug }) => {
           style="danger"
           onClick={deleteHandler}
         >
-          Delete
+          {t("posts.form.delete")}
         </Dropdown.MenuItem.Button>
       </Dropdown.Menu>
     </Dropdown>

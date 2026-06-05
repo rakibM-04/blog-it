@@ -51,7 +51,7 @@ class Post < ApplicationRecord
     end
 
     def set_publish_date
-      if will_save_change_to_status? && published?
+      if will_save_change_to_status? && published? || status == "published"
         self.published_at = Time.current
       end
     end

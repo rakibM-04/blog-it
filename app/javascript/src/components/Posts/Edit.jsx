@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import { useQueryClient } from "@tanstack/react-query";
 import { MODES } from "components/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import {
@@ -18,32 +17,35 @@ import EditForm from "./Form/Edit";
 
 const Edit = () => {
   const [mode, setMode] = useState(MODES.published);
+  const { slug } = useParams();
 
-  const updateMutation = useUpdatePost();
-  const deleteMutation = useDeletePost();
+  const updateMutation = useUpdatePost(slug);
+  const deleteMutation = useDeletePost(slug);
 
   const history = useHistory();
-  const queryClient = useQueryClient();
 
-  const { slug } = useParams();
   const {
-    isLoadingPost,
+    isLoading: isLoadingPost,
     data: { post: { title, description, categories } = {} } = {},
   } = useShowPost({ slug });
 
-  const { isLoadingCategories, data: { categories: categoryOptions } = {} } =
-    useFetchCategories();
+  const {
+    isLoading: isLoadingCategories,
+    data: { categories: categoryOptions } = {},
+  } = useFetchCategories();
 
-  if (isLoadingPost || isLoadingCategories) return <Spinner />;
+  if (isLoadingPost || isLoadingCategories) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   const handleDelete = () => {
     deleteMutation.mutate(
-      { slug },
-      {
-        onSuccess: () => {
-          history.replace(routes.home);
-        },
-      }
+      {},
+      { onSuccess: () => history.replace(routes.home) }
     );
   };
 
@@ -51,10 +53,9 @@ const Edit = () => {
     const categoryIds = categories?.map(category => category.id) ?? [];
 
     updateMutation.mutate(
-      { slug, title, description, categoryIds, status: mode },
+      { title, description, categoryIds, status: mode },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["posts", slug] });
           history.push(routes.home);
         },
       }
@@ -64,10 +65,9 @@ const Edit = () => {
   const handlePreview = ({ title, description, categories }) => {
     const categoryIds = categories?.map(category => category.id) ?? [];
     updateMutation.mutate(
-      { slug, status: "draft", title, description, categoryIds, quiet: true },
+      { status: MODES.draft, title, description, categoryIds, quiet: true },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["posts", slug] });
           history.push(routes.posts.show.replace(":slug", slug));
         },
       }

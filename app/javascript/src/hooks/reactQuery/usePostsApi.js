@@ -1,5 +1,6 @@
 import postsApi from "apis/posts";
 import { useMutation, useQuery } from "reactquery";
+import queryClient from "utils/queryClient";
 
 export const useFetchPosts = ({ personal = false, categories = [] }) =>
   useQuery({
@@ -19,22 +20,18 @@ export const useCreatePost = () =>
   useMutation({
     mutationFn: ({ title, description, categoryIds, status }) =>
       postsApi.create({ title, description, categoryIds, status }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
   });
 
-export const useUpdatePost = () =>
+export const useUpdatePost = slug =>
   useMutation({
-    mutationFn: ({
-      slug,
-      quiet = false,
-      title,
-      status,
-      description,
-      categoryIds,
-    }) =>
+    mutationFn: ({ quiet = false, title, status, description, categoryIds }) =>
       postsApi.update({ slug, quiet, title, description, status, categoryIds }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
   });
 
-export const useDeletePost = () =>
+export const useDeletePost = slug =>
   useMutation({
-    mutationFn: ({ slug, quiet = false }) => postsApi.destroy({ slug, quiet }),
+    mutationFn: ({ quiet = false }) => postsApi.destroy({ slug, quiet }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
   });

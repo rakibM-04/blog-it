@@ -50,11 +50,10 @@ const handleErrorResponse = axiosErrorObject => {
     window.location.href = "/";
   }
 
-  if (
-    [403, 404].includes(axiosErrorObject.response?.status) &&
-    axiosErrorObject.config?.method?.toUpperCase() === "GET"
-  ) {
-    window.location.href = "/pageNotFound";
+  if (axiosErrorObject.response?.status === 403) {
+    Toastr.error(
+      axiosErrorObject.response?.data?.error || DEFAULT_ERROR_NOTIFICATION
+    );
   }
 
   return Promise.reject(axiosErrorObject);

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def index
     if params.key?(:personal)
-      @posts = policy_scope(Post).where(user_id: current_user.id)
+      @posts = policy_scope(Post).where(user_id: current_user.id).order(published_at: :desc)
     else
       @posts = policy_scope(Post).published
       if params[:categories].present?

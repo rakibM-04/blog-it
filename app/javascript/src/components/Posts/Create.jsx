@@ -19,7 +19,13 @@ const Create = () => {
 
   const { data: { categories } = {}, isLoading } = useFetchCategories();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   const handleSubmit = async ({ title, description, categories }) => {
     const categoryIds = categories.map(category => category.id);

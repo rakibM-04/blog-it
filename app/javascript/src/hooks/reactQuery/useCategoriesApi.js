@@ -5,6 +5,4 @@ export const useFetchCategories = () =>
   useQuery({
     queryKey: ["categories"],
     queryFn: () => categoriesApi.fetch(),
-    staleTime: 0,
-    cacheTime: 0,
   });

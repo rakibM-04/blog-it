@@ -32,7 +32,9 @@ const EditActions = ({ mode, setMode, handlePreview, handleDelete }) => {
         onClick={submitForm}
       >
         <ActionDropdown.Menu>
-          <ActionDropdown.MenuItem.Button onClick={() => setMode(MODES.draft)}>
+          <ActionDropdown.MenuItem.Button
+            onClick={() => setMode(MODES.published)}
+          >
             {t("posts.form.published")}
           </ActionDropdown.MenuItem.Button>
           <ActionDropdown.MenuItem.Button onClick={() => setMode(MODES.draft)}>

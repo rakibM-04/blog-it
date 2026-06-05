@@ -27,7 +27,7 @@ const Show = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-screen items-center justify-center">
         <Spinner />
       </div>
     );
@@ -69,7 +69,7 @@ const Show = () => {
           <div>
             <Typography>{author.name}</Typography>
             <Typography className="text-sm text-gray-400">
-              {published_at ?? formatDate(published_at)}
+              {formatDate(published_at)}
             </Typography>
           </div>
         </div>

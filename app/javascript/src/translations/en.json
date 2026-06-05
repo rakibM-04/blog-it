@@ -12,12 +12,21 @@
       "title": "Filter",
       "submit": "Submit",
       "cancel": "Cancel"
-    }
+    },
+    "noCategories": "No categories"
+  },
+  "columnData": {
+    "title": "Title",
+    "categories": "Categories",
+    "lastPublishedAt": "Last published at",
+    "status": "Status"
   },
   "posts": {
     "create": "Create Post",
     "edit": "Edit Post",
     "myBlogPosts": "My Blog Posts",
+    "count_one": "{{count}} article",
+    "count_other": "{{count}} articles",
     "form": {
       "cancel": "Cancel",
       "title": "Title",
@@ -29,6 +38,8 @@
       "reset": "Reset",
       "published": "Publish",
       "draft": "Save as draft",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
       "delete": "Delete"
     }
   },

@@ -8,10 +8,11 @@ const Scaffold = ({
   children,
   scroll = false,
   sidebar = true,
+  sidebarElements,
   titleTag,
 }) => (
   <div className="flex h-screen w-full">
-    {sidebar && <Sidebar />}
+    {sidebar && <Sidebar sidebarElements={sidebarElements} />}
     <div className="flex-1">
       <div className="flex h-full flex-col gap-8 overflow-hidden p-8">
         <div className="flex w-full items-center justify-between">
