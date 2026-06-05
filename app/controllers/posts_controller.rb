@@ -3,21 +3,15 @@
 class PostsController < ApplicationController
   before_action :load_post!, only: %i[show update destroy]
   after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
+
+  helper_method :current_user
 
   def index
-    if params.key?(:personal)
-      @posts = policy_scope(Post).where(user_id: current_user.id).order(published_at: :desc)
-    else
-      @posts = policy_scope(Post).published
-      if params[:categories].present?
-        @posts = @posts.all.filter do |post|
-          !post.categories.where(id: params[:categories]).empty?
-        end
-      end
-    end
+    @posts = current_user.posts.order(updated_at: :desc)
+    return render :personal if params.key?(:personal)
 
-    render
+    @posts = policy_scope(Post).published.order(updated_at: :desc)
+    @posts = @posts.where(categories: { id: params[:categories] }) if params[:categories].present?
   end
 
   def update
@@ -31,12 +25,10 @@ class PostsController < ApplicationController
     authorize post
     post.organization = current_user.organization
     post.save!
-    render
   end
 
   def show
     authorize @post
-    render
   end
 
   def destroy

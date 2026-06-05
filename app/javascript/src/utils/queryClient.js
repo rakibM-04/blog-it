@@ -1,9 +1,8 @@
 import { QueryClient, QueryCache } from "reactquery";
-import routes from "routes";
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError: () => (window.location.href = routes.home),
+    // onError: () => (window.location.href = routes.home),
   }),
   defaultOptions: {
     queries: {

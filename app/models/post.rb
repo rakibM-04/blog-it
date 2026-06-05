@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
   enum :status, { draft: "draft", published: "published" }
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   belongs_to :organization
   has_and_belongs_to_many :categories
 
