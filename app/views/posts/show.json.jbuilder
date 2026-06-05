@@ -6,7 +6,10 @@ json.post do
     :description,
     :status
 
-  json.published_at @post.updated_at
-  json.author @post.user.name
+  json.published_at @post.published_at
+  json.author do
+    json.name @post.user.name
+    json.email @post.user.email
+  end
   json.categories @post.categories
 end

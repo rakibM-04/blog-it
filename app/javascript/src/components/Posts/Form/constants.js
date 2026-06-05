@@ -1,10 +1,10 @@
 import { t } from "i18next";
 import * as yup from "yup";
 
-export const FORM_DEFAULT_VALUES = {
+export const FORM_INITIAL_VALUES = {
   title: "",
   description: "",
-  category: "",
+  categories: [],
 };
 
 export const FORM_VALIDATION_SCHEMA = yup.object().shape({
@@ -12,9 +12,3 @@ export const FORM_VALIDATION_SCHEMA = yup.object().shape({
   description: yup.string().required(t("posts.form.descriptionRequired")),
   categories: yup.array(),
 });
-
-export const MODES = {
-  publish: "published",
-  draft: "draft",
-  delete: "delete",
-};

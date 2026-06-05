@@ -17,7 +17,9 @@
   "posts": {
     "create": "Create Post",
     "edit": "Edit Post",
+    "myBlogPosts": "My Blog Posts",
     "form": {
+      "cancel": "Cancel",
       "title": "Title",
       "titleRequired": "The 'Title' field is required",
       "description": "Description",

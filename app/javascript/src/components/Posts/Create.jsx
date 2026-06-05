@@ -1,24 +1,28 @@
 import { useState } from "react";
 
-import Scaffold from "commons/Scaffold/Scaffold";
+import { MODES } from "components/constants";
+import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
-import { useTranslation } from "react-i18next";
+import { Spinner } from "neetoui";
+import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 
-import Form from "./Form";
-import { MODES } from "./Form/constants";
-import CreateActions from "./Form/CreateActions";
+import { FORM_VALIDATION_SCHEMA, FORM_INITIAL_VALUES } from "./Form/constants";
+import CreateInputs from "./Form/Create";
 
 const Create = () => {
   const mutation = useCreatePost();
   const history = useHistory();
-  const { t } = useTranslation();
 
-  const [mode, setMode] = useState(MODES.publish);
+  const [mode, setMode] = useState(MODES.published);
+
+  const { data: { categories } = {}, isLoading } = useFetchCategories();
+
+  if (isLoading) return <Spinner />;
 
   const handleSubmit = async ({ title, description, categories }) => {
-    const categoryIds = categories?.map(category => category.id) ?? [];
+    const categoryIds = categories.map(category => category.id);
     mutation.mutate(
       { title, description, categoryIds, status: mode },
       {
@@ -30,9 +34,16 @@ const Create = () => {
   };
 
   return (
-    <Scaffold title={t("posts.create")}>
-      <Form {...{ mode, setMode, handleSubmit }} actions={CreateActions} />
-    </Scaffold>
+    <NeetoUIForm
+      className="h-full w-full"
+      formikProps={{
+        onSubmit: handleSubmit,
+        initialValues: FORM_INITIAL_VALUES,
+        validationSchema: FORM_VALIDATION_SCHEMA,
+      }}
+    >
+      <CreateInputs {...{ categories, mode, setMode }} />
+    </NeetoUIForm>
   );
 };
 

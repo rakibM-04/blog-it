@@ -5,7 +5,8 @@ json.posts @posts do | post |
     :title,
     :slug
 
-  json.published_at post.updated_at
+  json.status post.status
+  json.published_at post.published_at
   json.author post.user.name
   json.categories post.categories.map(&:name)
 end

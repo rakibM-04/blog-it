@@ -1,6 +1,6 @@
 import { resetAuthTokens } from "apis/axios";
 import { t } from "i18next";
-import { Book, Edit } from "neetoicons";
+import { Book, Edit, Folder } from "neetoicons";
 import { Avatar, Dropdown, Typography } from "neetoui";
 import routes from "routes";
 
@@ -46,6 +46,11 @@ const Sidebar = () => {
             routes.posts.edit,
           ])
         }
+      />
+      <SidebarLink
+        icon={<Folder />}
+        name={t("posts.myBlogPosts")}
+        route={routes.posts.personal}
       />
       <div className="mt-auto">
         <Dropdown

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const FORM_INITIAL_VALUES = {
-  categories: "",
+  categories: [],
 };
 
 export const FORM_VALIDATION_SCHEMA = yup.object().shape({

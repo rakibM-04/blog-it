@@ -9,7 +9,7 @@ class PostPolicy
   end
 
   def show?
-    user.id === post.organization.id
+    user.organization.id === post.organization.id
   end
 
   def update?
@@ -33,7 +33,9 @@ class PostPolicy
     end
 
     def resolve
-      scope.where(organization_id: user.organization_id)
+      org_scope = scope.where(organization_id: user.organization_id)
+      visible = scope.where(user_id: user.id).or(scope.where(status: "published"))
+      org_scope.and(visible)
     end
   end
 end

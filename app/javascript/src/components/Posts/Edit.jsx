@@ -1,73 +1,99 @@
 import { useState } from "react";
 
 import { useQueryClient } from "@tanstack/react-query";
-import Scaffold from "commons/Scaffold/Scaffold";
+import { MODES } from "components/constants";
+import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import {
   useDeletePost,
   useShowPost,
   useUpdatePost,
 } from "hooks/reactQuery/usePostsApi";
 import { Spinner } from "neetoui";
-import { useTranslation } from "react-i18next";
+import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 
-import Form from "./Form";
-import { MODES } from "./Form/constants";
-import EditActions from "./Form/EditActions";
+import { FORM_VALIDATION_SCHEMA } from "./Form/constants";
+import EditForm from "./Form/Edit";
 
 const Edit = () => {
-  const [mode, setMode] = useState(MODES.publish);
+  const [mode, setMode] = useState(MODES.published);
 
   const updateMutation = useUpdatePost();
   const deleteMutation = useDeletePost();
 
   const history = useHistory();
-  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { slug } = useParams();
   const {
-    isLoading,
+    isLoadingPost,
     data: { post: { title, description, categories } = {} } = {},
   } = useShowPost({ slug });
 
-  if (isLoading) return <Spinner />;
+  const { isLoadingCategories, data: { categories: categoryOptions } = {} } =
+    useFetchCategories();
 
-  const handleSubmit = async ({ title, description, categories }) => {
-    if (mode === MODES.delete) {
-      deleteMutation.mutate(slug, {
+  if (isLoadingPost || isLoadingCategories) return <Spinner />;
+
+  const handleDelete = () => {
+    deleteMutation.mutate(
+      { slug },
+      {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["posts", slug] });
           history.replace(routes.home);
         },
-      });
-    } else {
-      const categoryIds = categories?.map(category => category.id) ?? [];
-      updateMutation.mutate(
-        { slug, title, description, categoryIds },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["posts", slug] });
-            history.push(routes.home);
-          },
-        }
-      );
-    }
+      }
+    );
+  };
+
+  const handleSubmit = async ({ title, description, categories }) => {
+    const categoryIds = categories?.map(category => category.id) ?? [];
+
+    updateMutation.mutate(
+      { slug, title, description, categoryIds, status: mode },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["posts", slug] });
+          history.push(routes.home);
+        },
+      }
+    );
+  };
+
+  const handlePreview = ({ title, description, categories }) => {
+    const categoryIds = categories?.map(category => category.id) ?? [];
+    updateMutation.mutate(
+      { slug, status: "draft", title, description, categoryIds, quiet: true },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["posts", slug] });
+          history.push(routes.posts.show.replace(":slug", slug));
+        },
+      }
+    );
   };
 
   return (
-    <Scaffold title={t("posts.edit")}>
-      <Form
-        actions={EditActions}
-        {...{ mode, setMode, handleSubmit }}
-        initialValues={{
-          title,
-          description,
-          categories,
+    <NeetoUIForm
+      className="h-full w-full"
+      formikProps={{
+        onSubmit: handleSubmit,
+        initialValues: { title, description, categories },
+        validationSchema: FORM_VALIDATION_SCHEMA,
+      }}
+    >
+      <EditForm
+        {...{
+          mode,
+          setMode,
+          handleSubmit,
+          handleDelete,
+          handlePreview,
+          categories: categoryOptions,
         }}
       />
-    </Scaffold>
+    </NeetoUIForm>
   );
 };
 

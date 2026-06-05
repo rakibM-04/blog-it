@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const fetch = categories =>
-  axios.get("/posts", {
+const fetch = ({ personal, categories }) =>
+  axios.get(personal ? "/posts/?personal" : "/posts", {
     params: {
       categories,
     },
@@ -14,12 +14,13 @@ const create = ({ title, description, categoryIds, status }) =>
     post: { title, description, categoryIds, status },
   });
 
-const update = ({ slug, title, description, categoryIds, status }) =>
-  axios.put(`/posts/${slug}`, {
+const update = ({ quiet, slug, title, description, categoryIds, status }) =>
+  axios.put(quiet ? `/posts/${slug}?quiet` : `/posts/${slug}`, {
     post: { title, description, categoryIds, status },
   });
 
-const destroy = slug => axios.delete(`/posts/${slug}`);
+const destroy = ({ quiet, slug }) =>
+  axios.delete(quiet ? `/posts/${slug}?quiet` : `/posts/${slug}`);
 
 const postsApi = { fetch, show, create, update, destroy };
 

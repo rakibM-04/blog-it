@@ -9,6 +9,7 @@ import PrivateRoute from "commons/PrivateRoute";
 import Login from "components/Authentication/Login";
 import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
+import MyBlogPosts from "components/MyBlogPosts";
 import { CreatePost, EditPost, ShowPost } from "components/Posts";
 import * as R from "ramda";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
@@ -31,6 +32,7 @@ const App = () => {
             <Route exact component={CreatePost} path={routes.posts.create} />
             <Route exact component={ShowPost} path={routes.posts.show} />
             <Route exact component={EditPost} path={routes.posts.edit} />
+            <Route exact component={MyBlogPosts} path={routes.posts.personal} />
             <Route component={Login} path={routes.login} />
             <Route component={Signup} path={routes.signup} />
             <PrivateRoute

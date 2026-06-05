@@ -6,10 +6,14 @@ class PostsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @posts = policy_scope(Post)
-    if params[:categories].present?
-      @posts = Post.all.filter do |post|
-        !post.categories.where(id: params[:categories]).empty?
+    if params.key?(:personal)
+      @posts = policy_scope(Post).where(user_id: current_user.id)
+    else
+      @posts = policy_scope(Post).published
+      if params[:categories].present?
+        @posts = @posts.all.filter do |post|
+          !post.categories.where(id: params[:categories]).empty?
+        end
       end
     end
 
@@ -19,7 +23,7 @@ class PostsController < ApplicationController
   def update
     authorize @post
     @post.update(post_params)
-    render_notice(t("successfully_updated", entity: "Post"))
+    render_notice(t("successfully_updated", entity: "Post")) unless params.key?(:quiet)
   end
 
   def create
@@ -38,7 +42,7 @@ class PostsController < ApplicationController
   def destroy
     authorize @post
     @post.destroy
-    render_notice(t("post.deleted"))
+    render_notice(t("post.deleted")) unless params.key?(:quiet)
   end
 
   private
@@ -48,6 +52,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :status, category_ids: [])
+      params.require(:post).permit(:slug, :title, :description, :status, category_ids: [])
     end
 end

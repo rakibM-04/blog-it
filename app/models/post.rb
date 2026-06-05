@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   MAX_TITLE_LENGTH = 125
   MAX_DESCRIPTION_LENGTH = 10000
 
-  enum :status, { drafted: "draft", published: "published" }, prefix: true
+  enum :status, { draft: "draft", published: "published" }
 
   belongs_to :user
   belongs_to :organization
@@ -23,6 +23,7 @@ class Post < ApplicationRecord
   validate :slug_not_changed
 
   before_create :set_slug
+  before_save :set_publish_date
 
   private
 
@@ -46,6 +47,12 @@ class Post < ApplicationRecord
     def slug_not_changed
       if will_save_change_to_slug? && self.persisted?
         errors.add(:slug, I18n.t("post.slug.immutable"))
+      end
+    end
+
+    def set_publish_date
+      if will_save_change_to_status? && published?
+        self.published_at = Time.current
       end
     end
 end
