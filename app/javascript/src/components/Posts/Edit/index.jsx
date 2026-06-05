@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { MODES } from "components/constants";
+import { FORM_VALIDATION_SCHEMA, MODES } from "components/Posts/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import {
   useDeletePost,
@@ -12,8 +12,7 @@ import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 
-import { FORM_VALIDATION_SCHEMA } from "./Form/constants";
-import EditForm from "./Form/Edit";
+import EditForm from "./Inputs";
 
 const Edit = () => {
   const [mode, setMode] = useState(MODES.published);

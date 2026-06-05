@@ -1,11 +1,11 @@
 import Scaffold from "commons/Scaffold/Scaffold";
-import { MODES } from "components/constants";
+import { MODES } from "components/Posts/constants";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import { ActionDropdown } from "neetoui";
 import { Button, Input, Select, Textarea } from "neetoui/formik";
 
-const CreateInputs = ({ categories, mode, setMode }) => {
+const Inputs = ({ categories, mode, setMode }) => {
   const { resetForm, submitForm } = useFormikContext();
 
   return (
@@ -55,4 +55,4 @@ const CreateInputs = ({ categories, mode, setMode }) => {
   );
 };
 
-export default CreateInputs;
+export default Inputs;

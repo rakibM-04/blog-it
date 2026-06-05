@@ -1,6 +1,12 @@
 import { t } from "i18next";
 import * as yup from "yup";
 
+export const MODES = {
+  published: "published",
+  draft: "draft",
+  delete: "delete",
+};
+
 export const FORM_INITIAL_VALUES = {
   title: "",
   description: "",

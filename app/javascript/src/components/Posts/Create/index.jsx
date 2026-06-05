@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { MODES } from "components/constants";
+import {
+  FORM_INITIAL_VALUES,
+  FORM_VALIDATION_SCHEMA,
+  MODES,
+} from "components/Posts/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import { Spinner } from "neetoui";
@@ -8,8 +12,7 @@ import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 
-import { FORM_VALIDATION_SCHEMA, FORM_INITIAL_VALUES } from "./Form/constants";
-import CreateInputs from "./Form/Create";
+import CreateInputs from "./Inputs";
 
 const Create = () => {
   const mutation = useCreatePost();

@@ -4,13 +4,7 @@ import { Input, Select, Textarea } from "neetoui/formik";
 
 import EditActions from "./Actions";
 
-const EditInputs = ({
-  categories,
-  mode,
-  setMode,
-  handlePreview,
-  handleDelete,
-}) => (
+const Inputs = ({ categories, mode, setMode, handlePreview, handleDelete }) => (
   <Scaffold
     title={t("posts.edit")}
     toolbar={
@@ -31,4 +25,4 @@ const EditInputs = ({
   </Scaffold>
 );
 
-export default EditInputs;
+export default Inputs;

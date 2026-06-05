@@ -1,4 +1,4 @@
-import { MODES } from "components/constants";
+import { MODES } from "components/Posts/constants";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import { Eye, MenuHorizontal } from "neetoicons";

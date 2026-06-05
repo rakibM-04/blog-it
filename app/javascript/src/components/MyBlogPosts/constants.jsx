@@ -1,6 +1,6 @@
-import { MODES } from "components/constants";
+import { MODES } from "components/Posts/constants";
 import { t } from "i18next";
-import { Typography } from "neetoui";
+import { capitalize } from "neetocist";
 
 import DraftOptions from "./DraftOptions";
 import PublishedOptions from "./PublishedOptions";
@@ -25,7 +25,7 @@ export const COLUMN_DATA = [
     title: t("columnData.status"),
     dataIndex: "status",
     key: "status",
-    render: status => <Typography className="capitalize">{status}</Typography>,
+    render: status => capitalize(status),
   },
   {
     key: "action",

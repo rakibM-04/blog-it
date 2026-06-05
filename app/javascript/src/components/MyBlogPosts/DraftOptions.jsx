@@ -1,4 +1,4 @@
-import { MODES } from "components/constants";
+import { MODES } from "components/Posts/constants";
 import { useDeletePost, useUpdatePost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { MenuHorizontal } from "neetoicons";
