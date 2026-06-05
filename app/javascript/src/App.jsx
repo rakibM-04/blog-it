@@ -9,7 +9,7 @@ import PrivateRoute from "commons/PrivateRoute";
 import Login from "components/Authentication/Login";
 import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
-import MyBlogPosts from "components/MyBlogPosts";
+import MyBlogPosts from "components/Personal";
 import { CreatePost, EditPost, ShowPost } from "components/Posts";
 import * as R from "ramda";
 import { Switch, Route, BrowserRouter } from "react-router-dom";

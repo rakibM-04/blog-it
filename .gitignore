@@ -105,3 +105,4 @@ dump.rdb
 
 # Editor files
 tsconfig.json
+coverage
