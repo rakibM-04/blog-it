@@ -30,7 +30,7 @@ const Sidebar = ({ items }) => {
     <div className="flex-0 flex h-full flex-col justify-start gap-2 bg-gray-50 px-2 py-10 shadow-lg">
       <SidebarLink
         icon={<Book />}
-        name={t("blogPosts.title")}
+        name={t("dashboard.title")}
         route={routes.home}
         isActive={(_, location) =>
           matchesAnyPath(location.pathname, [routes.home, routes.posts.show])

@@ -9,8 +9,9 @@ import PrivateRoute from "commons/PrivateRoute";
 import Login from "components/Authentication/Login";
 import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
-import MyBlogPosts from "components/Personal";
+import MyBlogPosts from "components/MyBlogPosts";
 import { CreatePost, EditPost, ShowPost } from "components/Posts";
+import PostNotFound from "components/Posts/PostNotFound";
 import * as R from "ramda";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -66,6 +67,12 @@ const App = () => {
             />
             <Route component={Login} path={routes.login} />
             <Route component={Signup} path={routes.signup} />
+            <PrivateRoute
+              component={PostNotFound}
+              condition={isLoggedIn}
+              path={routes.posts.notFound}
+              redirectRoute={routes.login}
+            />
             <PrivateRoute
               component={PageNotFound}
               condition={isLoggedIn}

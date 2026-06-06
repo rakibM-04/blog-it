@@ -4,7 +4,7 @@
     "title": "Page Not Found",
     "buttonLabel": "Back to Home"
   },
-  "blogPosts": {
+  "dashboard": {
     "title": "Blog Posts",
     "addNewPost": "New Post",
     "filters": {
@@ -13,20 +13,30 @@
       "submit": "Submit",
       "cancel": "Cancel"
     },
-    "noCategories": "No categories"
+    "noCategories": "No categories",
+    "noData": {
+      "title": "No blog posts available",
+      "description": "Publish a new blog post to see it here"
+    }
   },
-  "columnData": {
-    "title": "Title",
-    "categories": "Categories",
-    "lastPublishedAt": "Last published at",
-    "status": "Status"
+  "myBlogPosts": {
+    "title": "My Blog Posts",
+    "articleCount_one": "{{count}} article",
+    "articleCount_other": "{{count}} articles",
+    "columnData": {
+      "title": "Title",
+      "categories": "Categories",
+      "lastPublishedAt": "Last published at",
+      "status": "Status"
+    }
   },
   "posts": {
     "create": "Create Post",
     "edit": "Edit Post",
-    "myBlogPosts": "My Blog Posts",
-    "count_one": "{{count}} article",
-    "count_other": "{{count}} articles",
+    "notFound": {
+      "title": "Post not found",
+      "description": "Publish a new blog post to see it here"
+    },
     "form": {
       "cancel": "Cancel",
       "title": "Title",

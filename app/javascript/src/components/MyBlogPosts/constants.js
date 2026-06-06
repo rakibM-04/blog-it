@@ -5,22 +5,22 @@ import { renderActionsPerRow } from "./utils";
 
 export const COLUMN_DATA = [
   {
-    title: t("columnData.title"),
+    title: t("myBlogPosts.columnData.title"),
     dataIndex: "title",
     key: "title",
   },
   {
-    title: t("columnData.categories"),
+    title: t("myBlogPosts.columnData.categories"),
     dataIndex: "categories",
     key: "categories",
   },
   {
-    title: t("columnData.lastPublishedAt"),
+    title: t("myBlogPosts.columnData.lastPublishedAt"),
     dataIndex: "lastPublishedAt",
     key: "lastPublishedAt",
   },
   {
-    title: t("columnData.status"),
+    title: t("myBlogPosts.columnData.status"),
     dataIndex: "status",
     key: "status",
     render: status => capitalize(status),

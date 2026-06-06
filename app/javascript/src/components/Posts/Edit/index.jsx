@@ -9,9 +9,8 @@ import {
   useUpdatePost,
 } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
-import { Spinner } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 
 import Actions from "./Actions";
@@ -27,6 +26,7 @@ const Edit = () => {
   const history = useHistory();
 
   const {
+    isError,
     isLoading: isLoadingPost,
     data: { post: { title, description, categories } = {} } = {},
   } = useShowPost({ slug });
@@ -36,12 +36,8 @@ const Edit = () => {
     data: { categories: categoryOptions } = {},
   } = useFetchCategories();
 
-  if (isLoadingPost || isLoadingCategories) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    );
+  if (isError) {
+    return <Redirect to={{ pathname: routes.posts.notFound }} />;
   }
 
   const handleDelete = () => {
@@ -58,7 +54,7 @@ const Edit = () => {
       { title, description, categoryIds, status: mode },
       {
         onSuccess: () => {
-          history.push(routes.home);
+          history.push(routes.posts.show.replace(":slug", slug));
         },
       }
     );
@@ -86,6 +82,7 @@ const Edit = () => {
       }}
     >
       <Scaffold
+        isLoading={isLoadingCategories || isLoadingPost}
         title={t("posts.edit")}
         toolbar={
           <Actions {...{ mode, setMode, handlePreview, handleDelete }} />

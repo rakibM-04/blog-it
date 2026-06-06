@@ -3,8 +3,8 @@ import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Edit } from "neetoicons";
-import { Avatar, Button, Spinner, Tag, Typography } from "neetoui";
-import { useParams } from "react-router-dom";
+import { Avatar, Button, Tag, Typography } from "neetoui";
+import { Redirect, useParams } from "react-router-dom";
 import routes from "routes";
 import { formatDate } from "utils/date";
 import { getFromLocalStorage } from "utils/storage";
@@ -15,24 +15,21 @@ const Show = () => {
   const { slug } = useParams();
   const {
     isLoading,
+    isError,
     data: {
       post: {
         title,
         status,
         description,
         published_at,
-        author,
-        categories,
+        author = { email: "" },
+        categories = [],
       } = {},
     } = {},
   } = useShowPost({ slug });
 
-  if (isLoading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    );
+  if (isError) {
+    return <Redirect to={{ pathname: routes.posts.notFound }} />;
   }
 
   const userEmail = getFromLocalStorage("authEmail");
@@ -42,6 +39,7 @@ const Show = () => {
 
   return (
     <Scaffold
+      isLoading={isLoading}
       title={title}
       titleBadge={
         status === STATUS.draft && (

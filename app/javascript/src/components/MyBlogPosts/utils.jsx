@@ -16,14 +16,17 @@ export const generateRowData = posts =>
         {title}
       </Link>
     ),
-    categories: categories.join(",") || t("blogPosts.noCategories"),
+    categories: categories.join(",") || t("dashboard.noCategories"),
     lastPublishedAt: formatDate(published_at),
     status,
   }));
 
-export const renderActionsPerRow = (_, record) =>
-  record.status === STATUS.published ? (
-    <PublishedOptions slug={record.slug} />
-  ) : (
-    <DraftOptions slug={record.slug} />
-  );
+export const renderActionsPerRow = (_, record) => (
+  <div className="mx-auto w-0">
+    {record.status === STATUS.published ? (
+      <PublishedOptions slug={record.slug} />
+    ) : (
+      <DraftOptions slug={record.slug} />
+    )}
+  </div>
+);

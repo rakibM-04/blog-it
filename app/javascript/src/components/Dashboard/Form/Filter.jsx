@@ -14,7 +14,7 @@ const Filter = ({ isOpen, onClose, filters, onFilterChange }) => {
   return (
     <Pane isOpen={isOpen} size="small" onClose={onClose}>
       <Pane.Header>
-        <Typography style="h2">{t("blogPosts.filters.title")}</Typography>
+        <Typography style="h2">{t("dashboard.filters.title")}</Typography>
       </Pane.Header>
       <Pane.Body className="flex w-full flex-col items-stretch gap-2 overflow-y-scroll">
         {isLoading ? (

@@ -3,7 +3,8 @@ import { useState } from "react";
 import Scaffold from "commons/Scaffold/Scaffold";
 import usePostSearch from "hooks/usePostSearch";
 import { Filter as FilterIcon } from "neetoicons";
-import { Button } from "neetoui";
+import { Button, NoData } from "neetoui";
+import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 import routes from "routes";
 
@@ -27,7 +28,7 @@ const Dashboard = () => {
       />
       <Scaffold
         scroll
-        title={t("blogPosts.title")}
+        title={t("dashboard.title")}
         sidebarItems={
           <Button
             icon={FilterIcon}
@@ -38,12 +39,20 @@ const Dashboard = () => {
         toolbar={
           <Button
             className="themed-button"
-            label={t("blogPosts.addNewPost")}
+            label={t("dashboard.addNewPost")}
             to={routes.posts.create}
           />
         }
       >
-        {createPostEntries(posts)}
+        {isEmpty(posts) ? (
+          <NoData
+            className="h-full"
+            description={t("dashboard.noData.description")}
+            title={t("dashboard.noData.title")}
+          />
+        ) : (
+          createPostEntries(posts)
+        )}
       </Scaffold>
     </>
   );

@@ -6,6 +6,7 @@ const routes = {
     show: "/posts/show/:slug",
     edit: "/posts/edit/:slug",
     personal: "/posts/personal",
+    notFound: "/posts/notFound",
   },
   login: "/login",
   signup: "/signup",

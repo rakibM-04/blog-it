@@ -22,9 +22,9 @@ const MyBlogPosts = () => {
   const rowData = generateRowData(posts);
 
   return (
-    <Scaffold title={t("posts.myBlogPosts")}>
+    <Scaffold title={t("myBlogPosts.title")}>
       <Typography style="h3">
-        {t("posts.count", { count: posts.length })}
+        {t("myBlogPosts.articleCount", { count: posts.length })}
       </Typography>
       <Table scroll columnData={COLUMN_DATA} rowData={rowData} />
     </Scaffold>
