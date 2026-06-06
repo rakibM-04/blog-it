@@ -31,5 +31,6 @@ module BlogIt
     end
 
     config.assets.pipeline = :sprockets
+    config.active_job.queue_adapter = :sidekiq
   end
 end

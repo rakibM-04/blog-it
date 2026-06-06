@@ -84,3 +84,5 @@ gem "data_migrate"
 gem "minitest-bisect"
 gem "pry-byebug"
 gem "pundit"
+
+gem "sidekiq", "~> 7.0"
