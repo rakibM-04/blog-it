@@ -1,9 +1,6 @@
-import { QueryClient, QueryCache } from "reactquery";
+import { QueryClient } from "reactquery";
 
 const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    // onError: () => (window.location.href = routes.home),
-  }),
   defaultOptions: {
     queries: {
       retry: 1,

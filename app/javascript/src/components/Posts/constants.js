@@ -1,7 +1,7 @@
 import { t } from "i18next";
 import * as yup from "yup";
 
-export const MODES = {
+export const STATUS = {
   published: "published",
   draft: "draft",
   delete: "delete",

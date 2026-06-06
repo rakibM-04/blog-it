@@ -1,9 +1,7 @@
-import { MODES } from "components/Posts/constants";
 import { t } from "i18next";
 import { capitalize } from "neetocist";
 
-import DraftOptions from "./DraftOptions";
-import PublishedOptions from "./PublishedOptions";
+import { renderActionsPerRow } from "./utils";
 
 export const COLUMN_DATA = [
   {
@@ -30,11 +28,6 @@ export const COLUMN_DATA = [
   {
     key: "action",
     align: "right",
-    render: (_, record) =>
-      record.status === MODES.published ? (
-        <PublishedOptions slug={record.slug} />
-      ) : (
-        <DraftOptions slug={record.slug} />
-      ),
+    render: renderActionsPerRow,
   },
 ];

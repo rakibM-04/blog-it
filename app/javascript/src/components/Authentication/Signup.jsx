@@ -33,7 +33,7 @@ const Signup = () => {
   };
 
   return (
-    <Scaffold sidebar={false} title={t("users.form.signup.title")}>
+    <Scaffold showSidebar={false} title={t("users.form.signup.title")}>
       <SignupForm handleSubmit={handleSubmit} />
     </Scaffold>
   );

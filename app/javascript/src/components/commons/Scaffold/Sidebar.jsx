@@ -9,7 +9,7 @@ import SidebarLink from "./SidebarLink";
 import { getFromLocalStorage, setToLocalStorage } from "../../../utils/storage";
 import { matchesAnyPath } from "../../../utils/url";
 
-const Sidebar = ({ sidebarElements }) => {
+const Sidebar = ({ items }) => {
   const currentUser = {
     name: getFromLocalStorage("authUserName"),
     email: getFromLocalStorage("authEmail"),
@@ -27,7 +27,7 @@ const Sidebar = ({ sidebarElements }) => {
   };
 
   return (
-    <div className="flex-0 flex h-full flex-col justify-start gap-2 bg-gray-50 px-4 py-10 shadow-lg">
+    <div className="flex-0 flex h-full flex-col justify-start gap-2 bg-gray-50 px-2 py-10 shadow-lg">
       <SidebarLink
         icon={<Book />}
         name={t("blogPosts.title")}
@@ -52,7 +52,7 @@ const Sidebar = ({ sidebarElements }) => {
         name={t("posts.myBlogPosts")}
         route={routes.posts.personal}
       />
-      {sidebarElements}
+      {items}
       <div className="mt-auto">
         <Dropdown
           className="mb-8 ml-4"

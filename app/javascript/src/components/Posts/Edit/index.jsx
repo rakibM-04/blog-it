@@ -1,21 +1,24 @@
 import { useState } from "react";
 
-import { FORM_VALIDATION_SCHEMA, MODES } from "components/Posts/constants";
+import Scaffold from "commons/Scaffold/Scaffold";
+import { FORM_VALIDATION_SCHEMA, STATUS } from "components/Posts/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import {
   useDeletePost,
   useShowPost,
   useUpdatePost,
 } from "hooks/reactQuery/usePostsApi";
+import { t } from "i18next";
 import { Spinner } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 
-import EditForm from "./Inputs";
+import Actions from "./Actions";
+import Inputs from "./Inputs";
 
 const Edit = () => {
-  const [mode, setMode] = useState(MODES.published);
+  const [mode, setMode] = useState(STATUS.published);
   const { slug } = useParams();
 
   const updateMutation = useUpdatePost(slug);
@@ -64,7 +67,7 @@ const Edit = () => {
   const handlePreview = ({ title, description, categories }) => {
     const categoryIds = categories?.map(category => category.id) ?? [];
     updateMutation.mutate(
-      { status: MODES.draft, title, description, categoryIds, quiet: true },
+      { status: STATUS.draft, title, description, categoryIds, quiet: true },
       {
         onSuccess: () => {
           history.push(routes.posts.show.replace(":slug", slug));
@@ -82,16 +85,16 @@ const Edit = () => {
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >
-      <EditForm
-        {...{
-          mode,
-          setMode,
-          handleSubmit,
-          handleDelete,
-          handlePreview,
-          categories: categoryOptions,
-        }}
-      />
+      <Scaffold
+        title={t("posts.edit")}
+        toolbar={
+          <Actions {...{ mode, setMode, handlePreview, handleDelete }} />
+        }
+      >
+        <div className="flex w-full flex-col gap-4">
+          <Inputs categories={categoryOptions} />
+        </div>
+      </Scaffold>
     </NeetoUIForm>
   );
 };

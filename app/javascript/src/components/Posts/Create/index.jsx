@@ -1,24 +1,26 @@
 import { useState } from "react";
 
+import Scaffold from "commons/Scaffold/Scaffold";
 import {
   FORM_INITIAL_VALUES,
   FORM_VALIDATION_SCHEMA,
-  MODES,
+  STATUS,
 } from "components/Posts/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
+import { t } from "i18next";
 import { Spinner } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
 
-import CreateInputs from "./Inputs";
+import Inputs from "./Inputs";
 
 const Create = () => {
   const mutation = useCreatePost();
   const history = useHistory();
 
-  const [mode, setMode] = useState(MODES.published);
+  const [mode, setMode] = useState(STATUS.published);
 
   const { data: { categories } = {}, isLoading } = useFetchCategories();
 
@@ -51,7 +53,11 @@ const Create = () => {
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >
-      <CreateInputs {...{ categories, mode, setMode }} />
+      <Scaffold title={t("posts.create")}>
+        <div className="flex w-full flex-col gap-4">
+          <Inputs {...{ categories, mode, setMode }} />
+        </div>
+      </Scaffold>
     </NeetoUIForm>
   );
 };

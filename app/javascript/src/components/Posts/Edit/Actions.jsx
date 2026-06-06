@@ -1,4 +1,4 @@
-import { MODES } from "components/Posts/constants";
+import { STATUS } from "components/Posts/constants";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import { Eye, MenuHorizontal } from "neetoicons";
@@ -33,11 +33,11 @@ const EditActions = ({ mode, setMode, handlePreview, handleDelete }) => {
       >
         <ActionDropdown.Menu>
           <ActionDropdown.MenuItem.Button
-            onClick={() => setMode(MODES.published)}
+            onClick={() => setMode(STATUS.published)}
           >
             {t("posts.form.published")}
           </ActionDropdown.MenuItem.Button>
-          <ActionDropdown.MenuItem.Button onClick={() => setMode(MODES.draft)}>
+          <ActionDropdown.MenuItem.Button onClick={() => setMode(STATUS.draft)}>
             {t("posts.form.draft")}
           </ActionDropdown.MenuItem.Button>
         </ActionDropdown.Menu>

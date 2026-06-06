@@ -17,26 +17,23 @@ const Dashboard = () => {
 
   const { t } = useTranslation();
 
-  const openFilterPane = () => setIsFilterPaneOpen(true);
-  const closeFilterPane = () => setIsFilterPaneOpen(false);
-
-  const handleFilterSubmit = async categoryIds => {
-    updateQueryParams({ categoryIds });
-  };
-
   return (
     <>
       <FilterForm
         filters={{ categories }}
-        handleSubmit={handleFilterSubmit}
         isOpen={isFilterPaneOpen}
-        onClose={closeFilterPane}
+        onClose={() => setIsFilterPaneOpen(false)}
+        onFilterChange={async categoryIds => updateQueryParams({ categoryIds })}
       />
       <Scaffold
         scroll
         title={t("blogPosts.title")}
-        sidebarElements={
-          <Button icon={FilterIcon} style="text" onClick={openFilterPane} />
+        sidebarItems={
+          <Button
+            icon={FilterIcon}
+            style="text"
+            onClick={() => setIsFilterPaneOpen(true)}
+          />
         }
         toolbar={
           <Button

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     return render :personal if params.key?(:personal)
 
     @posts = policy_scope(Post).status_published.order(updated_at: :desc)
-    @posts = @posts.where(categories: { id: params[:categories] }) if params[:categories].present?
+    @posts = @posts.joins(:categories).where(categories: { id: params[:categories] }) if params[:categories].present?
   end
 
   def update

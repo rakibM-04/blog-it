@@ -1,4 +1,4 @@
-import { MODES } from "components/Posts/constants";
+import { STATUS } from "components/Posts/constants";
 import { useDeletePost, useUpdatePost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { MenuHorizontal } from "neetoicons";
@@ -13,7 +13,7 @@ const DraftOptions = ({ slug }) => {
   };
 
   const updateHandler = () => {
-    updateMutation.mutate({ quiet: true, status: MODES.published });
+    updateMutation.mutate({ quiet: true, status: STATUS.published });
   };
 
   return (
