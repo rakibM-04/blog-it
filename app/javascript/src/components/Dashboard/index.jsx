@@ -8,7 +8,7 @@ import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 import routes from "routes";
 
-import FilterForm from "./Form/Filter";
+import FilterForm from "./Filter";
 import { createPostEntries } from "./utils";
 
 const Dashboard = () => {

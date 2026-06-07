@@ -22,7 +22,7 @@ const Show = () => {
         status,
         description,
         published_at,
-        author = { email: "" },
+        author = {},
         categories = [],
       } = {},
     } = {},

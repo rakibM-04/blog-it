@@ -3,7 +3,7 @@ import { alias } from "./config/build/config";
 import { define, entryPoints, extensions } from "./config/build/constants";
 import svgr from "vite-plugin-svgr";
 const postCssConfig = require("./postcss.config");
-import react from '@vitejs/plugin-react'
+import react from "@vitejs/plugin-react";
 
 const port = process.env.DEVSERVER_PORT || 8000;
 
@@ -27,8 +27,11 @@ const baseConfig = {
       include: "**/*.svg",
     }),
     react({
-      jsxRuntime: 'automatic'
-    })
+      jsxRuntime: "automatic",
+      babel: {
+        presets: ["@bigbinary/neeto"],
+      },
+    }),
   ],
 };
 

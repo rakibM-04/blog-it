@@ -7,11 +7,14 @@ class PostsController < ApplicationController
   helper_method :current_user
 
   def index
-    @posts = current_user.posts.order(updated_at: :desc)
-    return render :personal if params.key?(:personal)
+    posts = if params.key?(:personal)
+      current_user.posts
+    else
+      policy_scope(Post).status_published
+    end
 
-    @posts = policy_scope(Post).status_published.order(updated_at: :desc)
-    @posts = @posts.joins(:categories).where(categories: { id: params[:categories] }) if params[:categories].present?
+    @posts = Post.with_filters(posts, params).latest
+    render :personal if params.key?(:personal)
   end
 
   def update

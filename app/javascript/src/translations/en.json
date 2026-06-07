@@ -28,6 +28,20 @@
       "categories": "Categories",
       "lastPublishedAt": "Last published at",
       "status": "Status"
+    },
+    "columnFilterTitle": "Columns",
+    "filters": {
+      "heading": "Filters",
+      "title": "Title",
+      "category": "Category",
+      "submit": "Submit",
+      "reset": "Reset",
+      "status": {
+        "label": "Status",
+        "draft": "Draft",
+        "published": "Published",
+        "both": "Both"
+      }
     }
   },
   "posts": {

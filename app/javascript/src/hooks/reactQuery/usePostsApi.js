@@ -2,10 +2,15 @@ import postsApi from "apis/posts";
 import { useMutation, useQuery } from "reactquery";
 import queryClient from "utils/queryClient";
 
-export const useFetchPosts = ({ personal = false, categories = [] }) =>
+export const useFetchPosts = ({
+  personal = false,
+  categories,
+  status,
+  title,
+}) =>
   useQuery({
-    queryKey: ["posts", categories, personal],
-    queryFn: () => postsApi.fetch({ categories, personal }),
+    queryKey: ["posts", categories, personal, title, status],
+    queryFn: () => postsApi.fetch({ categories, personal, title, status }),
     staleTime: 0,
     cacheTime: 0,
   });

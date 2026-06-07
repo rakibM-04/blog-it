@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  scope :by_categories, ->(categories) { joins(:categories).where(categories: { id: categories }).distinct }
+  scope :by_status, ->(status) { where(status:) }
+  scope :by_title, ->(title) { where("title LIKE ?", "%" + Post.sanitize_sql_like(title) + "%") }
+  scope :latest, -> { order(updated_at: :desc) }
+
   MAX_TITLE_LENGTH = 125
   MAX_DESCRIPTION_LENGTH = 10000
 
@@ -26,6 +31,13 @@ class Post < ApplicationRecord
   before_save :set_publish_date
 
   private
+
+    def self.with_filters(posts, params)
+      posts = posts.by_categories(params[:categories]) if params[:categories].present?
+      posts = posts.by_title(params[:title]) if params[:title].present?
+      posts = posts.by_status(params[:status]) if params[:status].present?
+      posts
+    end
 
     def set_slug
       title_slug = title.parameterize

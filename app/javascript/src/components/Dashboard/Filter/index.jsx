@@ -18,7 +18,7 @@ const Filter = ({ isOpen, onClose, filters, onFilterChange }) => {
       </Pane.Header>
       <Pane.Body className="flex w-full flex-col items-stretch gap-2 overflow-y-scroll">
         {isLoading ? (
-          <Spinner />
+          <Spinner className="h-full" />
         ) : (
           generateCategoryButtons({
             allCategories,

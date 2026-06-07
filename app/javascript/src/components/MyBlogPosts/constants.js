@@ -3,31 +3,39 @@ import { capitalize } from "neetocist";
 
 import { renderActionsPerRow } from "./utils";
 
+export const COLUMN_KEYS = {
+  title: "title",
+  categories: "categories",
+  lastPublishedAt: "lastPublishedAt",
+  status: "status",
+};
+
 export const COLUMN_DATA = [
   {
     title: t("myBlogPosts.columnData.title"),
     dataIndex: "title",
-    key: "title",
+    key: COLUMN_KEYS.title,
   },
   {
     title: t("myBlogPosts.columnData.categories"),
     dataIndex: "categories",
-    key: "categories",
+    key: COLUMN_KEYS.categories,
   },
   {
     title: t("myBlogPosts.columnData.lastPublishedAt"),
     dataIndex: "lastPublishedAt",
-    key: "lastPublishedAt",
+    key: COLUMN_KEYS.lastPublishedAt,
   },
   {
     title: t("myBlogPosts.columnData.status"),
     dataIndex: "status",
-    key: "status",
+    key: COLUMN_KEYS.status,
     render: status => capitalize(status),
   },
-  {
-    key: "action",
-    align: "right",
-    render: renderActionsPerRow,
-  },
 ];
+
+export const COLUMN_ACTIONS = {
+  key: "action",
+  align: "right",
+  render: renderActionsPerRow,
+};

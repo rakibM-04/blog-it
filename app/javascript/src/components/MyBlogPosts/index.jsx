@@ -1,33 +1,69 @@
+import { useState } from "react";
+
 import Scaffold from "commons/Scaffold/Scaffold";
 import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
-import { Spinner, Table, Typography } from "neetoui";
+import { Filter } from "neetoicons";
+import { Button, Table, Typography } from "neetoui";
+import * as R from "ramda";
+import useTableFilterStore from "stores/useTableFilterStore";
 
-import { COLUMN_DATA } from "./constants";
+import { COLUMN_ACTIONS, COLUMN_DATA } from "./constants";
+import ColumnFilters from "./Filters/Column";
+import RowFiltersPane from "./Filters/Row";
 import { generateRowData } from "./utils";
 
 const MyBlogPosts = () => {
-  const { isLoading, data: { posts = [] } = {} } = useFetchPosts({
-    personal: true,
-  });
+  const [isFilterPaneOpen, setIsFilterPaneOpen] = useState(false);
+  const {
+    categories: selectedCategories,
+    title,
+    status: selectedStatus,
+    allowedColumns,
+  } = useTableFilterStore.pick();
 
-  if (isLoading) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+  const categories = selectedCategories.map(category => category.id);
+  const status = selectedStatus.value;
+
+  const { isLoading, data: { posts = [] } = {} } = useFetchPosts(
+    R.filter(Boolean, {
+      personal: true,
+      categories,
+      title,
+      status,
+    })
+  );
 
   const rowData = generateRowData(posts);
+  const filteredColumnData = COLUMN_DATA.filter(
+    column => allowedColumns[column.key]
+  );
+  filteredColumnData.push(COLUMN_ACTIONS);
 
   return (
-    <Scaffold title={t("myBlogPosts.title")}>
-      <Typography style="h3">
-        {t("myBlogPosts.articleCount", { count: posts.length })}
-      </Typography>
-      <Table scroll columnData={COLUMN_DATA} rowData={rowData} />
-    </Scaffold>
+    <>
+      <RowFiltersPane
+        isOpen={isFilterPaneOpen}
+        onClose={() => setIsFilterPaneOpen(false)}
+      />
+      <Scaffold
+        isLoading={isLoading}
+        title={t("myBlogPosts.title")}
+        toolbar={<ColumnFilters />}
+        sidebarItems={
+          <Button
+            icon={Filter}
+            style="text"
+            onClick={() => setIsFilterPaneOpen(true)}
+          />
+        }
+      >
+        <Typography style="h3">
+          {t("myBlogPosts.articleCount", { count: posts.length })}
+        </Typography>
+        <Table scroll columnData={filteredColumnData} rowData={rowData} />
+      </Scaffold>
+    </>
   );
 };
 

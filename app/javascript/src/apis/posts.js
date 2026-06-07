@@ -1,9 +1,11 @@
 import axios from "axios";
 
-const fetch = ({ personal, categories }) =>
+const fetch = ({ personal, categories, title, status }) =>
   axios.get(personal ? "/posts/?personal" : "/posts", {
     params: {
       categories,
+      title,
+      status,
     },
   });
 
