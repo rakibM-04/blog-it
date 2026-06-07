@@ -6,12 +6,13 @@ import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Edit } from "neetoicons";
 import { Avatar, Button, Tag, Typography } from "neetoui";
-import { Redirect, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 import { formatDate } from "utils/date";
 import { getFromLocalStorage } from "utils/storage";
 
 const Show = () => {
+  const history = useHistory();
   const { slug } = useParams();
   const {
     isLoading,
@@ -29,7 +30,7 @@ const Show = () => {
   } = useShowPost({ slug });
 
   if (isError) {
-    return <Redirect to={{ pathname: routes.posts.notFound }} />;
+    return history.replace(routes.posts.notFound);
   }
 
   const userEmail = getFromLocalStorage("authEmail");

@@ -12,7 +12,7 @@ import {
 } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Form as NeetoUIForm } from "neetoui/formik";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 
 import Actions from "./Actions";
@@ -39,7 +39,7 @@ const Edit = () => {
   } = useFetchCategories();
 
   if (isError) {
-    return <Redirect to={{ pathname: routes.posts.notFound }} />;
+    return history.replace(routes.posts.notFound);
   }
 
   const handleDelete = () => {
@@ -56,7 +56,7 @@ const Edit = () => {
       { title, description, categoryIds, status: mode },
       {
         onSuccess: () => {
-          history.push(routes.posts.show.replace(":slug", slug));
+          history.replace(routes.posts.show.replace(":slug", slug));
         },
       }
     );

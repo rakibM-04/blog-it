@@ -56,10 +56,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.new(post_params)
-    authorize post
-    post.organization = current_user.organization
-    post.save!
+    @post = current_user.posts.new(post_params)
+    authorize @post
+    @post.organization = current_user.organization
+    @post.save!
   end
 
   def show

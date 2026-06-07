@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
 json.post do
-  json.extract! @post,
-    :title,
-    :description,
-    :status
+  json.partial! "posts/post", post: @post
 
-  json.published_at @post.published_at
+  json.description @post.description
   json.author do
     json.name @post.user.name
     json.email @post.user.email
   end
-  json.categories @post.categories
 end
