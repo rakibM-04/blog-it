@@ -1,4 +1,5 @@
-import { STATUS } from "components/Posts/constants";
+import { STATUS } from "constants";
+
 import { useDeletePost, useUpdatePost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { MenuHorizontal } from "neetoicons";

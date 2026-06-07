@@ -1,10 +1,11 @@
+import { STATUS } from "constants";
+
 import { useState } from "react";
 
 import Scaffold from "commons/Scaffold/Scaffold";
 import {
   FORM_INITIAL_VALUES,
   FORM_VALIDATION_SCHEMA,
-  STATUS,
 } from "components/Posts/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";

@@ -14,13 +14,45 @@ class PostsController < ApplicationController
     end
 
     @posts = Post.with_filters(posts, params).latest
-    render :personal if params.key?(:personal)
+    return render :personal if params.key?(:personal)
+
+    render
   end
 
   def update
     authorize @post
     @post.update(post_params)
     render_notice(t("successfully_updated", entity: "Post")) unless params.key?(:quiet)
+  end
+
+  def bulk_update
+    patch, slugs = bulk_update_params
+    status = patch[:status]
+    @posts = current_user.posts.where(slug: slugs).where.not(status:)
+
+    if @posts.empty?
+      skip_authorization
+      return
+    end
+
+    @posts.each do |post|
+      authorize post
+      post.update(status:)
+    end
+  end
+
+  def bulk_destroy
+    @posts = current_user.posts.where(slug: bulk_destroy_params)
+
+    if @posts.empty?
+      skip_authorization
+      return
+    end
+
+    @posts.each do |post|
+      authorize post
+    end
+    @posts.destroy_all
   end
 
   def create
@@ -48,5 +80,13 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:slug, :title, :description, :status, category_ids: [])
+    end
+
+    def bulk_update_params
+      params.expect(patch: [:status], slugs: [])
+    end
+
+    def bulk_destroy_params
+      params.expect(slugs: [])
     end
 end

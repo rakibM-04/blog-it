@@ -1,9 +1,9 @@
 import {
   TABLE_FILTER_FORM_INITIAL_VALUES,
   TABLE_FILTER_STORE,
+  COLUMN_KEYS,
 } from "constants";
 
-import { COLUMN_KEYS } from "components/MyBlogPosts/constants";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

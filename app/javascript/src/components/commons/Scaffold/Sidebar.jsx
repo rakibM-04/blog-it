@@ -49,7 +49,7 @@ const Sidebar = ({ items }) => {
       />
       <SidebarLink
         icon={<Folder />}
-        name={t("posts.myBlogPosts")}
+        name={t("myBlogPosts.title")}
         route={routes.posts.personal}
       />
       {items}

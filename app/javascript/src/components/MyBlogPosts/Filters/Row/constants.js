@@ -1,4 +1,5 @@
-import { STATUS } from "components/Posts/constants";
+import { STATUS } from "constants";
+
 import { t } from "i18next";
 import * as yup from "yup";
 

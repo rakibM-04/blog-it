@@ -1,8 +1,8 @@
+import { COLUMN_KEYS } from "constants";
+
 import { t } from "i18next";
 import { ActionDropdown, Checkbox } from "neetoui";
 import useFilterStore from "stores/useTableFilterStore";
-
-import { COLUMN_KEYS } from "../constants";
 
 const ColumnFilter = () => {
   const { allowedColumns, toggleColumn } = useFilterStore();

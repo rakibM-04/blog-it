@@ -10,3 +10,16 @@ export const TABLE_FILTER_FORM_INITIAL_VALUES = {
     value: "",
   },
 };
+
+export const COLUMN_KEYS = {
+  title: "title",
+  categories: "categories",
+  lastPublishedAt: "lastPublishedAt",
+  status: "status",
+};
+
+export const STATUS = {
+  published: "published",
+  draft: "draft",
+  delete: "delete",
+};

@@ -1,4 +1,5 @@
-import { STATUS } from "components/Posts/constants";
+import { STATUS } from "constants";
+
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import { ActionDropdown } from "neetoui";

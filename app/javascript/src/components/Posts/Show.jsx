@@ -1,3 +1,5 @@
+import { STATUS } from "constants";
+
 import Scaffold from "commons/Scaffold/Scaffold";
 import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
@@ -8,8 +10,6 @@ import { Redirect, useParams } from "react-router-dom";
 import routes from "routes";
 import { formatDate } from "utils/date";
 import { getFromLocalStorage } from "utils/storage";
-
-import { STATUS } from "./constants";
 
 const Show = () => {
   const { slug } = useParams();

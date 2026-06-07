@@ -8,6 +8,7 @@ import { Button, Table, Typography } from "neetoui";
 import * as R from "ramda";
 import useTableFilterStore from "stores/useTableFilterStore";
 
+import Bulk from "./Actions/Bulk";
 import { COLUMN_ACTIONS, COLUMN_DATA } from "./constants";
 import ColumnFilters from "./Filters/Column";
 import RowFiltersPane from "./Filters/Row";
@@ -15,6 +16,8 @@ import { generateRowData } from "./utils";
 
 const MyBlogPosts = () => {
   const [isFilterPaneOpen, setIsFilterPaneOpen] = useState(false);
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
   const {
     categories: selectedCategories,
     title,
@@ -37,8 +40,7 @@ const MyBlogPosts = () => {
   const rowData = generateRowData(posts);
   const filteredColumnData = COLUMN_DATA.filter(
     column => allowedColumns[column.key]
-  );
-  filteredColumnData.push(COLUMN_ACTIONS);
+  ).concat(COLUMN_ACTIONS);
 
   return (
     <>
@@ -49,7 +51,6 @@ const MyBlogPosts = () => {
       <Scaffold
         isLoading={isLoading}
         title={t("myBlogPosts.title")}
-        toolbar={<ColumnFilters />}
         sidebarItems={
           <Button
             icon={Filter}
@@ -57,11 +58,28 @@ const MyBlogPosts = () => {
             onClick={() => setIsFilterPaneOpen(true)}
           />
         }
+        toolbar={
+          selectedRowKeys.length === 0 ? (
+            <ColumnFilters />
+          ) : (
+            <Bulk selectedSlugs={selectedRowKeys} />
+          )
+        }
       >
         <Typography style="h3">
           {t("myBlogPosts.articleCount", { count: posts.length })}
         </Typography>
-        <Table scroll columnData={filteredColumnData} rowData={rowData} />
+        <Table
+          scroll
+          bordered={false}
+          columnData={filteredColumnData}
+          rowData={rowData}
+          rowSelection={{ fixed: true }}
+          selectedRowKeys={selectedRowKeys}
+          onRowSelect={selectedRowKeys => {
+            setSelectedRowKeys(selectedRowKeys);
+          }}
+        />
       </Scaffold>
     </>
   );
