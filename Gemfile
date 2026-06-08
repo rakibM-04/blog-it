@@ -63,7 +63,7 @@ group :development, :test do
   # For auto-generating demo data
   gem "faker"
 
-  gem "sqlite3", "~> 1.4"
+  gem "sqlite3", "~> 2.9"
 end
 
 group :development do
