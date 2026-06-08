@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :load_post!, only: %i[show update destroy vote]
-  after_action :verify_authorized, except: :index
+  after_action :verify_authorized, except: %i[index bulk_destroy bulk_update]
 
   helper_method :current_user
 
@@ -38,28 +38,13 @@ class PostsController < ApplicationController
     status = patch[:status]
     @posts = current_user.posts.where(slug: slugs).where.not(status:)
 
-    if @posts.empty?
-      skip_authorization
-      return
-    end
-
     @posts.each do |post|
-      authorize post
       post.update(status:)
     end
   end
 
   def bulk_destroy
     @posts = current_user.posts.where(slug: bulk_destroy_params)
-
-    if @posts.empty?
-      skip_authorization
-      return
-    end
-
-    @posts.each do |post|
-      authorize post
-    end
     @posts.destroy_all
   end
 

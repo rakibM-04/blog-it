@@ -16,16 +16,8 @@ class PostPolicy
     user.id == post.user.id
   end
 
-  def bulk_update?
-    user.id == post.user.id
-  end
-
   def create?
     true
-  end
-
-  def bulk_destroy?
-    user.id == post.user.id
   end
 
   def destroy?

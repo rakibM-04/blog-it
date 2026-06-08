@@ -80,4 +80,7 @@ Rails.application.configure do
   Bullet.bullet_logger = true
   Bullet.console = true
   Bullet.rails_logger = true
+
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 end

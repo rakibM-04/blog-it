@@ -70,6 +70,9 @@ group :development do
   gem "erb_lint", require: false, git: "https://github.com/Shopify/erb-lint.git", branch: "main"
 
   gem "bullet"
+
+  # For opening mails in development env
+  gem "letter_opener"
 end
 
 group :test do
@@ -86,3 +89,7 @@ gem "pry-byebug"
 gem "pundit"
 
 gem "sidekiq", "~> 7.0"
+# For periodic sidekiq jobs
+gem "sidekiq-cron"
+# Gemfile
+gem "secvault", "~> 3.1"
