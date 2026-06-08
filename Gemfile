@@ -10,8 +10,10 @@ gem "rails", "~> 8.0.0"
 gem "sprockets"
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
+# THE GEM USED BEFORE
+# # Use sqlite3 as the database for Active Record
+# gem "sqlite3", ">= 2.1"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
@@ -60,6 +62,8 @@ group :development, :test do
 
   # For auto-generating demo data
   gem "faker"
+
+  gem "sqlite3", "~> 1.4"
 end
 
 group :development do
@@ -93,3 +97,5 @@ gem "sidekiq", "~> 7.0"
 gem "sidekiq-cron"
 # Gemfile
 gem "secvault", "~> 3.1"
+
+gem "pg", group: [:production]

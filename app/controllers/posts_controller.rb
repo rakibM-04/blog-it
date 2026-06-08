@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post.assign_attributes(post_params)
 
     if @post.changed?
-      if @post.save
+      if @post.save!
         render_notice(t("successfully_updated", entity: "Post")) unless params.key?(:quiet)
       else
         render_error(t("post.no_change"))
@@ -39,13 +39,13 @@ class PostsController < ApplicationController
     @posts = current_user.posts.where(slug: slugs).where.not(status:)
 
     @posts.each do |post|
-      post.update(status:)
+      post.update!(status:)
     end
   end
 
   def bulk_destroy
     @posts = current_user.posts.where(slug: bulk_destroy_params)
-    @posts.destroy_all
+    @posts.destroy_all!
   end
 
   def create
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
 
   def destroy
     authorize @post
-    @post.destroy
+    @post.destroy!
     render_notice(t("post.deleted")) unless params.key?(:quiet)
   end
 
@@ -75,10 +75,10 @@ class PostsController < ApplicationController
 
     shall_delete = original_value == update_value
     if shall_delete
-      vote.destroy
+      vote.destroy!
     else
       vote.value = update_value
-      vote.save
+      vote.save!
     end
   end
 
