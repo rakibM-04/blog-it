@@ -4,4 +4,4 @@ json.posts @posts do | post |
   json.partial! "posts/post", post: post
 end
 
-json.total_count current_user.posts_count
+json.totalCount current_user.posts_count

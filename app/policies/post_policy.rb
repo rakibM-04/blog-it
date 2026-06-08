@@ -32,12 +32,8 @@ class PostPolicy
     user.id == post.user.id
   end
 
-  def upvote?
-    user.id == post.user.id
-  end
-
-  def downvote?
-    user.id == post.user.id
+  def vote?
+    user.organization.id == post.organization.id
   end
 
   class Scope

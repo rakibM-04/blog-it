@@ -30,7 +30,7 @@ const MyBlogPosts = () => {
     setRowFilters,
   } = useTableFilterStore.pick();
 
-  const { isLoading, data: { posts = [], total_count } = {} } = useFetchPosts(
+  const { isLoading, data: { posts = [], totalCount } = {} } = useFetchPosts(
     R.filter(Boolean, {
       personal: true,
       categories: selectedCategories.map(category => category.id),
@@ -53,7 +53,7 @@ const MyBlogPosts = () => {
   };
 
   const message = resolveCountMessage({
-    totalCount: total_count,
+    totalCount,
     title: selectedTitle,
     filteredCount: posts.length,
   });

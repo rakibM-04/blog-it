@@ -35,8 +35,8 @@ const destroyAll = slugs =>
     params: { slugs },
   });
 
-const upvote = slug => axios.patch(`/posts/${slug}/upvote`);
-const downvote = slug => axios.patch(`/posts/${slug}/downvote`);
+const upvote = slug => axios.patch(`/posts/${slug}/vote`, { vote: 1 });
+const downvote = slug => axios.patch(`/posts/${slug}/vote`, { vote: -1 });
 
 const postsApi = {
   fetch,

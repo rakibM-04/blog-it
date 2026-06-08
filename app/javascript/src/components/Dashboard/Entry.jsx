@@ -11,13 +11,13 @@ import Vote from "./Vote";
 
 const Entry = ({
   title,
-  published_at,
+  publishedAt,
   slug,
   categories,
   authorName,
-  votes_count,
-  vote_value,
-  is_bloggable,
+  votesCount,
+  voteValue,
+  isBloggable,
 }) => {
   const upvoteMutation = useUpvotePost();
   const downvoteMutation = useDownvotePost();
@@ -40,20 +40,20 @@ const Entry = ({
           <Typography className="capitalize hover:cursor-pointer" style="h1">
             {title}
           </Typography>
-          {is_bloggable && <Tag label={t("dashboard.isBloggable")} />}
+          {isBloggable && <Tag label={t("dashboard.isBloggable")} />}
         </Link>
         <div className="flex">{createCategoryTags(categories)}</div>
         <Typography className="mt-2">{authorName}</Typography>
         <Typography className="text-gray-400" style="h5">
-          {formatDate(published_at)}
+          {formatDate(publishedAt)}
         </Typography>
       </div>
       <Vote
         {...{
           upvoteHandler,
           downvoteHandler,
-          votesCount: votes_count,
-          voteValue: vote_value,
+          votesCount,
+          voteValue,
         }}
       />
     </div>

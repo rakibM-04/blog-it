@@ -8,6 +8,7 @@ class Post < ApplicationRecord
 
   MAX_TITLE_LENGTH = 125
   MAX_DESCRIPTION_LENGTH = 10000
+  BLOGGABLE_THRESHOLD = 0
 
   enum :status, { draft: "draft", published: "published" }, prefix: true
 
@@ -25,7 +26,7 @@ class Post < ApplicationRecord
     presence: true,
     length: { maximum: MAX_DESCRIPTION_LENGTH }
 
-  validates_inclusion_of :is_bloggable, in: [true, false]
+  validates :is_bloggable, inclusion: { in: [true, false] }
   validates :slug, uniqueness: true
   validate :slug_not_changed
 
@@ -65,7 +66,8 @@ class Post < ApplicationRecord
     end
 
     def set_publish_date
-      if status_published? && (changed? || !self.persisted?) && !will_save_change_to_is_bloggable?
+      non_affected_attributes = %w[is_bloggable upvotes downvotes]
+      if status_published? && changed? && (changed_attribute_names_to_save - non_affected_attributes).any?
         self.published_at = Time.current
       end
     end

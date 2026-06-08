@@ -3,7 +3,8 @@
 json.extract! post,
   :title,
   :slug,
-  :status,
-  :published_at
+  :status
+
+json.publishedAt post.published_at
 json.categories post.categories.map(&:name)
 json.authorName post.user.name

@@ -22,7 +22,7 @@ const Show = () => {
         title,
         status,
         description,
-        published_at,
+        publishedAt,
         author = {},
         categories = [],
       } = {},
@@ -68,7 +68,7 @@ const Show = () => {
           <div>
             <Typography>{author.name}</Typography>
             <Typography className="text-sm text-gray-400">
-              {formatDate(published_at)}
+              {formatDate(publishedAt)}
             </Typography>
           </div>
         </div>

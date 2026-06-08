@@ -22,8 +22,7 @@ Rails.application.routes.draw do
       end
 
       member do
-        patch "upvote"
-        patch "downvote"
+        patch "vote"
       end
     end
     resources :categories, only: %i[index create]

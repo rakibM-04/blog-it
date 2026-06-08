@@ -11,7 +11,7 @@ import DraftOptions from "./Actions/Draft";
 import PublishedOptions from "./Actions/Published";
 
 export const generateRowData = posts =>
-  posts.map(({ title, slug, categories, published_at, status }) => ({
+  posts.map(({ title, slug, categories, publishedAt, status }) => ({
     id: slug,
     slug,
     title: (
@@ -20,7 +20,7 @@ export const generateRowData = posts =>
       </Link>
     ),
     categories: categories.join(",") || t("dashboard.noCategories"),
-    lastPublishedAt: formatDate(published_at),
+    lastPublishedAt: formatDate(publishedAt),
     status,
   }));
 

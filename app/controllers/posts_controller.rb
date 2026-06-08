@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :load_post!, only: %i[show update destroy upvote downvote]
+  before_action :load_post!, only: %i[show update destroy vote]
   after_action :verify_authorized, except: :index
 
   helper_method :current_user
@@ -81,23 +81,19 @@ class PostsController < ApplicationController
     render_notice(t("post.deleted")) unless params.key?(:quiet)
   end
 
-  def upvote
+  def vote
     authorize @post
     vote = Vote.find_or_initialize_by(user_id: current_user.id, post_id: @post.id)
-    if vote.value == 1
-      vote.update(value: 0)
-    else
-      vote.update(value: 1)
-    end
-  end
+    original_value = if vote.new_record? then 0 else vote.value end
 
-  def downvote
-    authorize @post
-    vote = Vote.find_or_initialize_by(user_id: current_user.id, post_id: @post.id)
-    if vote.value == -1
-      vote.update(value: 0)
+    update_value = vote_params
+
+    shall_delete = original_value == update_value
+    if shall_delete
+      vote.destroy
     else
-      vote.update(value: -1)
+      vote.value = update_value
+      vote.save
     end
   end
 
@@ -117,5 +113,9 @@ class PostsController < ApplicationController
 
     def bulk_destroy_params
       params.expect(slugs: [])
+    end
+
+    def vote_params
+      params.expect(:vote)
     end
 end
