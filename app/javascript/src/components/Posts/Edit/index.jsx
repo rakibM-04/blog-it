@@ -11,6 +11,7 @@ import {
   useUpdatePost,
 } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
+import { Spinner } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
@@ -38,9 +39,14 @@ const Edit = () => {
     data: { categories: categoryOptions } = {},
   } = useFetchCategories();
 
+  if (isLoadingCategories || isLoadingPost) return <Spinner />;
+
   if (isError) {
     return history.replace(routes.posts.notFound);
   }
+
+  const selectedCategoryOptions =
+    categoryOptions?.filter(({ name }) => categories.includes(name)) || [];
 
   const handleDelete = () => {
     deleteMutation.mutate(
@@ -79,12 +85,15 @@ const Edit = () => {
       className="h-full w-full"
       formikProps={{
         onSubmit: handleSubmit,
-        initialValues: { title, description, categories },
+        initialValues: {
+          title,
+          description,
+          categories: selectedCategoryOptions,
+        },
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >
       <Scaffold
-        isLoading={isLoadingCategories || isLoadingPost}
         title={t("posts.edit")}
         toolbar={
           <Actions {...{ mode, setMode, handlePreview, handleDelete }} />

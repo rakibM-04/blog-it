@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import Sidebar from "commons/Scaffold/Sidebar";
-import { Spinner, Typography } from "neetoui";
+import { Typography } from "neetoui";
 
 const Scaffold = ({
   title,
@@ -10,7 +10,6 @@ const Scaffold = ({
   titleBadge,
   scroll = false,
   showSidebar = true,
-  isLoading = false,
 }) => (
   <div className="flex h-screen w-full">
     {showSidebar && <Sidebar items={sidebarItems} />}
@@ -28,13 +27,7 @@ const Scaffold = ({
             "overflow-y-scroll": scroll,
           })}
         >
-          {isLoading ? (
-            <div className="h-full">
-              <Spinner />
-            </div>
-          ) : (
-            children
-          )}
+          {children}
         </div>
       </div>
     </div>

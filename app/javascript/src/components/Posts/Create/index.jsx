@@ -10,6 +10,7 @@ import {
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
+import { Spinner } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -23,6 +24,8 @@ const Create = () => {
   const [mode, setMode] = useState(STATUS.published);
 
   const { data: { categories } = {}, isLoading } = useFetchCategories();
+
+  if (isLoading) return <Spinner />; // to-change-later-to-scaffold-spinner
 
   const handleSubmit = async ({ title, description, categories }) => {
     const categoryIds = categories.map(category => category.id);
@@ -45,7 +48,7 @@ const Create = () => {
         validationSchema: FORM_VALIDATION_SCHEMA,
       }}
     >
-      <Scaffold isLoading={isLoading} title={t("posts.create")}>
+      <Scaffold title={t("posts.create")}>
         <div className="flex w-full flex-col gap-4">
           <Inputs {...{ categories, mode, setMode }} />
         </div>

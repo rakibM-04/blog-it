@@ -5,7 +5,7 @@ import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Edit } from "neetoicons";
-import { Avatar, Button, Tag, Typography } from "neetoui";
+import { Avatar, Button, Spinner, Tag, Typography } from "neetoui";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 import { formatDate } from "utils/date";
@@ -29,6 +29,8 @@ const Show = () => {
     } = {},
   } = useShowPost({ slug });
 
+  if (isLoading) return <Spinner />; // to-change-later-to-scaffold-spinner
+
   if (isError) {
     return history.replace(routes.posts.notFound);
   }
@@ -38,7 +40,6 @@ const Show = () => {
 
   return (
     <Scaffold
-      isLoading={isLoading}
       title={title}
       titleBadge={
         status === STATUS.draft && (

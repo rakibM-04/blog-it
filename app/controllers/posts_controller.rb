@@ -7,13 +7,13 @@ class PostsController < ApplicationController
   helper_method :current_user
 
   def index
-    posts = if params.key?(:personal)
+    @posts = if params.key?(:personal)
       current_user.posts
     else
       policy_scope(Post).status_published
     end
 
-    @posts = Post.with_filters(posts, params).latest
+    @posts = Posts::PostFilterService.new(@posts).process!(params)
     @user_id = current_user.id
     return render :personal if params.key?(:personal)
 

@@ -13,7 +13,7 @@ import MyBlogPosts from "components/MyBlogPosts";
 import { CreatePost, EditPost, ShowPost } from "components/Posts";
 import PostNotFound from "components/Posts/PostNotFound";
 import * as R from "ramda";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { QueryClientProvider } from "reactquery";
 import routes from "routes";
@@ -72,7 +72,13 @@ const App = () => {
               path={routes.login}
               redirectRoute={routes.home}
             />
-            <Route component={Signup} path={routes.signup} />
+            <PrivateRoute
+              exact
+              component={Signup}
+              condition={!isLoggedIn}
+              path={routes.signup}
+              redirectRoute={routes.home}
+            />
             <PrivateRoute
               component={PostNotFound}
               condition={isLoggedIn}

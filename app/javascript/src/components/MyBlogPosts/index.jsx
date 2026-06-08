@@ -4,7 +4,7 @@ import Scaffold from "commons/Scaffold/Scaffold";
 import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Filter } from "neetoicons";
-import { Button, Table, Typography } from "neetoui";
+import { Button, Spinner, Table, Typography } from "neetoui";
 import * as R from "ramda";
 import useTableFilterStore from "stores/useTableFilterStore";
 
@@ -39,6 +39,8 @@ const MyBlogPosts = () => {
     })
   );
 
+  if (isLoading) return <Spinner />; // to-change-later-to-scaffold-spinner
+
   const rowData = generateRowData(posts);
   const filteredColumnData = COLUMN_DATA.filter(
     column => allowedColumns[column.key]
@@ -67,7 +69,6 @@ const MyBlogPosts = () => {
         onClose={() => setIsFilterPaneOpen(false)}
       />
       <Scaffold
-        isLoading={isLoading}
         title={t("myBlogPosts.title")}
         sidebarItems={
           <Button
