@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   scope :by_categories, ->(categories) { joins(:categories).where(categories: { id: categories }).distinct }
   scope :by_status, ->(status) { where(status:) }
   scope :by_title, ->(title) { where("title LIKE ?", "%" + Post.sanitize_sql_like(title) + "%") }
-  scope :latest, -> { order(updated_at: :desc) }
+  scope :latest, -> { order(published_at: :desc) }
 
   MAX_TITLE_LENGTH = 125
   MAX_DESCRIPTION_LENGTH = 10000
@@ -14,6 +14,8 @@ class Post < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :organization
   has_and_belongs_to_many :categories
+  has_many :votes, dependent: :destroy
+  has_many :voters, through: :votes, source: :user
 
   validates :title,
     presence: true,
@@ -63,6 +65,8 @@ class Post < ApplicationRecord
     end
 
     def set_publish_date
-      self.published_at = Time.current if status_published?
+      if status_published? && (changed? || !self.persisted?) && !will_save_change_to_is_bloggable?
+        self.published_at = Time.current
+      end
     end
 end

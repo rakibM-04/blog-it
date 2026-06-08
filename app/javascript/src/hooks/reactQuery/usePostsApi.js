@@ -52,3 +52,15 @@ export const useDeleteAllPosts = () =>
     mutationFn: slugs => postsApi.destroyAll(slugs),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
   });
+
+export const useUpvotePost = () =>
+  useMutation({
+    mutationFn: slug => postsApi.upvote(slug),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
+  });
+
+export const useDownvotePost = () =>
+  useMutation({
+    mutationFn: slug => postsApi.downvote(slug),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
+  });

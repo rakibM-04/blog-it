@@ -6,6 +6,7 @@
   },
   "dashboard": {
     "title": "Blog Posts",
+    "isBloggable": "Bloggable",
     "addNewPost": "New Post",
     "filters": {
       "categories": "Categories",
@@ -21,8 +22,12 @@
   },
   "myBlogPosts": {
     "title": "My Blog Posts",
+    "selectedCount_one": "Showing {{count}} of {{total}} article",
+    "selectedCount_other": "Showing {{count}} of {{total}} articles",
     "articleCount_one": "{{count}} article",
     "articleCount_other": "{{count}} articles",
+    "titleCount_one": "{{count}} result for \"{{title}}\"",
+    "titleCount_other": "{{count}} results for \"{{title}}\"",
     "columnData": {
       "title": "Title",
       "categories": "Categories",

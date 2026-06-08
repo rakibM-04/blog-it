@@ -36,8 +36,6 @@ const Show = () => {
   const userEmail = getFromLocalStorage("authEmail");
   const canEdit = userEmail === author.email;
 
-  const categoryNames = categories.map(({ name }) => name);
-
   return (
     <Scaffold
       isLoading={isLoading}
@@ -59,7 +57,7 @@ const Show = () => {
       }
     >
       <div className="relative bottom-4 flex flex-col border-b-2 pb-4">
-        <div className="flex">{createCategoryTags(categoryNames)}</div>
+        <div className="flex">{createCategoryTags(categories)}</div>
         <div className="mt-4 flex items-center gap-3">
           <Avatar
             size="large"

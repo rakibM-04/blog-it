@@ -12,28 +12,30 @@ import Bulk from "./Actions/Bulk";
 import { COLUMN_ACTIONS, COLUMN_DATA } from "./constants";
 import ColumnFilters from "./Filters/Column";
 import RowFiltersPane from "./Filters/Row";
-import { generateRowData } from "./utils";
+import {
+  createCategoryTags,
+  generateRowData,
+  resolveCountMessage,
+} from "./utils";
 
 const MyBlogPosts = () => {
   const [isFilterPaneOpen, setIsFilterPaneOpen] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   const {
-    categories: selectedCategories,
-    title,
+    categories: selectedCategories = [],
+    title: selectedTitle,
     status: selectedStatus,
     allowedColumns,
+    setRowFilters,
   } = useTableFilterStore.pick();
 
-  const categories = selectedCategories.map(category => category.id);
-  const status = selectedStatus.value;
-
-  const { isLoading, data: { posts = [] } = {} } = useFetchPosts(
+  const { isLoading, data: { posts = [], total_count } = {} } = useFetchPosts(
     R.filter(Boolean, {
       personal: true,
-      categories,
-      title,
-      status,
+      categories: selectedCategories.map(category => category.id),
+      title: selectedTitle,
+      status: selectedStatus.value,
     })
   );
 
@@ -41,6 +43,22 @@ const MyBlogPosts = () => {
   const filteredColumnData = COLUMN_DATA.filter(
     column => allowedColumns[column.key]
   ).concat(COLUMN_ACTIONS);
+
+  const handleRemoveCategory = category => {
+    setRowFilters({
+      categories: selectedCategories.filter(({ name }) => name !== category),
+      status: selectedStatus,
+      title: selectedTitle,
+    });
+  };
+
+  const message = resolveCountMessage({
+    totalCount: total_count,
+    title: selectedTitle,
+    filteredCount: posts.length,
+  });
+
+  const isAnyRowSelected = selectedRowKeys.length > 0;
 
   return (
     <>
@@ -59,16 +77,22 @@ const MyBlogPosts = () => {
           />
         }
         toolbar={
-          selectedRowKeys.length === 0 ? (
-            <ColumnFilters />
-          ) : (
+          isAnyRowSelected ? (
             <Bulk selectedSlugs={selectedRowKeys} />
+          ) : (
+            <ColumnFilters />
           )
         }
       >
-        <Typography style="h3">
-          {t("myBlogPosts.articleCount", { count: posts.length })}
-        </Typography>
+        <div className="flex gap-4">
+          <Typography style="h3">{message}</Typography>
+          <div className="flex gap-1">
+            {createCategoryTags({
+              categories: R.pluck("name", selectedCategories),
+              onClose: handleRemoveCategory,
+            })}
+          </div>
+        </div>
         <Table
           scroll
           bordered={false}

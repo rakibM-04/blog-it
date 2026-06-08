@@ -21,5 +21,5 @@ export const STATUS_OPTIONS = [
 export const ROW_FILTER_VALIDATION_SCHEMA = yup.object({
   title: yup.string(),
   categories: yup.array(),
-  status: yup.object().oneOf(STATUS_OPTIONS),
+  status: yup.object(),
 });

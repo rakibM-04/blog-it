@@ -9,15 +9,15 @@ class PostPolicy
   end
 
   def show?
-    user.organization.id === post.organization.id && (post.status_published? || post.user_id == user.id)
+    user.organization.id == post.organization.id && (post.status_published? || post.user_id == user.id)
   end
 
   def update?
-    user.id === post.user.id
+    user.id == post.user.id
   end
 
   def bulk_update?
-    user.id === post.user.id
+    user.id == post.user.id
   end
 
   def create?
@@ -25,11 +25,19 @@ class PostPolicy
   end
 
   def bulk_destroy?
-    user.id === post.user.id
+    user.id == post.user.id
   end
 
   def destroy?
-    user.id === post.user.id
+    user.id == post.user.id
+  end
+
+  def upvote?
+    user.id == post.user.id
+  end
+
+  def downvote?
+    user.id == post.user.id
   end
 
   class Scope

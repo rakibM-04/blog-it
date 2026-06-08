@@ -1,6 +1,8 @@
 import { STATUS } from "constants";
 
 import { t } from "i18next";
+import { isNotEmpty } from "neetocist";
+import { Tag } from "neetoui";
 import { Link } from "react-router-dom";
 import routes from "routes";
 import { formatDate } from "utils/date";
@@ -28,3 +30,31 @@ export const renderActionsPerRow = (_, record) =>
   ) : (
     <DraftOptions slug={record.slug} />
   );
+
+export const createCategoryTags = ({ categories = [], onClose }) =>
+  categories.map(category => (
+    <Tag
+      className="bg-black text-white"
+      key={category}
+      label={category}
+      size="small"
+      style="secondary"
+      type="solid"
+      onClose={() => onClose(category)}
+    />
+  ));
+
+export const resolveCountMessage = ({ totalCount, title, filteredCount }) => {
+  if (isNotEmpty(title)) {
+    return t("myBlogPosts.titleCount", { count: filteredCount, title });
+  }
+
+  if (filteredCount < totalCount) {
+    return t("myBlogPosts.selectedCount", {
+      total: totalCount,
+      count: filteredCount,
+    });
+  }
+
+  return t("myBlogPosts.articleCount", { count: totalCount });
+};

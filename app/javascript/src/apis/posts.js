@@ -35,6 +35,9 @@ const destroyAll = slugs =>
     params: { slugs },
   });
 
+const upvote = slug => axios.patch(`/posts/${slug}/upvote`);
+const downvote = slug => axios.patch(`/posts/${slug}/downvote`);
+
 const postsApi = {
   fetch,
   show,
@@ -43,6 +46,8 @@ const postsApi = {
   destroy,
   updateAll,
   destroyAll,
+  upvote,
+  downvote,
 };
 
 export default postsApi;

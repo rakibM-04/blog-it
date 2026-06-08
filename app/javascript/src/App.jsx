@@ -65,7 +65,13 @@ const App = () => {
               path={routes.home}
               redirectRoute={routes.login}
             />
-            <Route component={Login} path={routes.login} />
+            <PrivateRoute
+              exact
+              component={Login}
+              condition={!isLoggedIn}
+              path={routes.login}
+              redirectRoute={routes.home}
+            />
             <Route component={Signup} path={routes.signup} />
             <PrivateRoute
               component={PostNotFound}

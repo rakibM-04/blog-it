@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :load_post!, only: %i[show update destroy]
+  before_action :load_post!, only: %i[show update destroy upvote downvote]
   after_action :verify_authorized, except: :index
 
   helper_method :current_user
@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     end
 
     @posts = Post.with_filters(posts, params).latest
+    @user_id = current_user.id
     return render :personal if params.key?(:personal)
 
     render
@@ -21,8 +22,15 @@ class PostsController < ApplicationController
 
   def update
     authorize @post
-    @post.update(post_params)
-    render_notice(t("successfully_updated", entity: "Post")) unless params.key?(:quiet)
+    @post.assign_attributes(post_params)
+
+    if @post.changed?
+      if @post.save
+        render_notice(t("successfully_updated", entity: "Post")) unless params.key?(:quiet)
+      else
+        render_error(t("post.no_change"))
+      end
+    end
   end
 
   def bulk_update
@@ -64,12 +72,33 @@ class PostsController < ApplicationController
 
   def show
     authorize @post
+    @user = current_user
   end
 
   def destroy
     authorize @post
     @post.destroy
     render_notice(t("post.deleted")) unless params.key?(:quiet)
+  end
+
+  def upvote
+    authorize @post
+    vote = Vote.find_or_initialize_by(user_id: current_user.id, post_id: @post.id)
+    if vote.value == 1
+      vote.update(value: 0)
+    else
+      vote.update(value: 1)
+    end
+  end
+
+  def downvote
+    authorize @post
+    vote = Vote.find_or_initialize_by(user_id: current_user.id, post_id: @post.id)
+    if vote.value == -1
+      vote.update(value: 0)
+    else
+      vote.update(value: -1)
+    end
   end
 
   private

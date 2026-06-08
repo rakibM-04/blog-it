@@ -35,6 +35,7 @@ en:
   successfully_updated: "%{entity} was successfully updated!"
   post:
     deleted: "Post is deleted."
+    no_change: "Post is not changed"
     slug:
       immutable: "is immutable!"
   not_found: "Couldn't find %{entity}"
