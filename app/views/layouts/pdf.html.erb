@@ -1,34 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       .title {
-        font-size: 48px;
+        font-size: 2.5rem;
+        font-weight: 800;
         font-family: "Helvetica";
-        font-weight: bold;
-        padding-bottom: 12px;
+        line-height: 1.2;
+        margin: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
       }
-      .author {
-        font-size: 20px;
-        display: inline;
+
+      .metadata {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-top: 16px;
+        margin-bottom: 40px;
       }
-      .name {
-        margin-right: 8px;
-        display: inline;
-      }
+
       .description {
-        font-size: 16px;
-        font-family: "Helvetica";
-        margin-top: 24px;
-        padding: 24px 0;
         border-top: 1px solid gray;
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: var(--text-body);
         white-space: pre-wrap;
+      }
+
+      .divider {
+        margin: 0 4px;
       }
     </style>
   </head>
   <body>
     <div id="header"></div>
-    <div id="content"><%= yield %></div>
+    <div id="content">
+      <%= yield %>
+    </div>
   </body>
 </html>

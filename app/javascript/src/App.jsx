@@ -10,10 +10,9 @@ import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
 import MyBlogPosts from "components/MyBlogPosts";
 import { CreatePost, EditPost, ShowPost } from "components/Posts";
-import DownloadReport from "components/Posts/DownloadAttachment";
 import PostNotFound from "components/Posts/PostNotFound";
 import * as R from "ramda";
-import { Switch, BrowserRouter, Route } from "react-router-dom";
+import { Switch, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { QueryClientProvider } from "reactquery";
 import routes from "routes";
@@ -84,11 +83,6 @@ const App = () => {
             condition={isLoggedIn}
             path={routes.posts.notFound}
             redirectRoute={routes.login}
-          />
-          <Route
-            exact
-            component={DownloadReport}
-            path="/posts/:slug/attachment/download"
           />
           <PrivateRoute
             component={PageNotFound}

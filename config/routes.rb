@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       collection do
         delete "bulk_destroy"
         patch "bulk_update"
+        get "personal"
       end
 
       member do

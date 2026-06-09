@@ -1,7 +1,16 @@
 import axios from "axios";
 
-const fetch = ({ personal, categories, title, status }) =>
-  axios.get(personal ? "/posts/?personal" : "/posts", {
+const fetch = ({ categories, title, status }) =>
+  axios.get("/posts", {
+    params: {
+      categories,
+      title,
+      status,
+    },
+  });
+
+const fetchPersonal = ({ categories, title, status }) =>
+  axios.get("/posts/personal", {
     params: {
       categories,
       title,
@@ -55,6 +64,7 @@ const postsApi = {
   destroyAll,
   upvote,
   downvote,
+  fetchPersonal,
 };
 
 export default postsApi;

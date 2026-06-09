@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Scaffold, ScaffoldSpinner } from "commons";
-import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
+import { useFetchPersonalPosts } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Filter } from "neetoicons";
 import { Button, Table, Typography } from "neetoui";
@@ -30,14 +30,14 @@ const MyBlogPosts = () => {
     setRowFilters,
   } = useTableFilterStore.pick();
 
-  const { isLoading, data: { posts = [], totalCount } = {} } = useFetchPosts(
-    R.filter(Boolean, {
-      personal: true,
-      categories: selectedCategories.map(category => category.id),
-      title: selectedTitle,
-      status: selectedStatus.value,
-    })
-  );
+  const { isLoading, data: { posts = [], totalCount } = {} } =
+    useFetchPersonalPosts(
+      R.filter(Boolean, {
+        categories: selectedCategories.map(category => category.id),
+        title: selectedTitle,
+        status: selectedStatus.value,
+      })
+    );
 
   if (isLoading) return <ScaffoldSpinner title={t("myBlogPosts.title")} />;
 

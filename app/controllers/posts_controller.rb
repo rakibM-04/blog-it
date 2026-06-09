@@ -2,22 +2,20 @@
 
 class PostsController < ApplicationController
   before_action :load_post!, only: %i[show update destroy vote]
-  after_action :verify_authorized, except: %i[index bulk_destroy bulk_update]
+  after_action :verify_authorized, except: %i[index personal bulk_destroy bulk_update]
 
   helper_method :current_user
 
   def index
-    @posts = if params.key?(:personal)
-      current_user.posts
-    else
-      policy_scope(Post).status_published
-    end
-
-    @posts = Posts::PostFilterService.new(@posts).process!(params)
+    @posts = policy_scope(Post).status_published
+    @posts = PostFilterService.new(@posts).process!(params)
     @user_id = current_user.id
-    return render :personal if params.key?(:personal)
+  end
 
-    render
+  def personal
+    @posts = current_user.posts
+    @posts = PostFilterService.new(@posts).process!(params)
+    @user_id = current_user.id
   end
 
   def update

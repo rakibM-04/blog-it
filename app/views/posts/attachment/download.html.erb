@@ -1,17 +1,17 @@
-<div class="main-content">
-  <div class="title">
+<article class="main-content">
+  <h1 class="title">
     <%= @post.title %>
+  </h1>
+
+  <div class="metadata">
+    <span class="author-name"><strong><%= @user.name %></strong></span>
+    <span class="divider">•</span>
+    <span class="author-email"><%= @user.email %></span>
+    <span class="divider">•</span>
+    <span class="date"><%= @post.published_at.strftime('%d %b %Y, %H:%M') %></span>
   </div>
-  <p class="author name">
-    <%= @user.name %>
-  </p>
-  <p class="author email">
-    <%= @user.email %>
-  </p>
-  <p class="date">
-    <%= @post.published_at.strftime('%d-%m-%y %H:%M') %>
-  </p>
+
   <div class="description">
-    <%= @post.description %>
+<%= @post.description %>
   </div>
-</div>
+</article>
