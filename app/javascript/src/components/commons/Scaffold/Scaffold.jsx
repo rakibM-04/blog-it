@@ -18,7 +18,9 @@ const Scaffold = ({
       <div className="flex h-full flex-col gap-8 overflow-hidden p-8">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-2">
-            <Typography className="text-5xl capitalize">{title}</Typography>
+            <Typography className="text-5xl first-letter:uppercase">
+              {title}
+            </Typography>
             {titleBadge}
           </div>
           <div className="flex h-fit gap-2">{toolbar}</div>

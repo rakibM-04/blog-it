@@ -18,7 +18,7 @@ import {
   resolveCountMessage,
 } from "./utils";
 
-const MyBlogPosts = () => {
+const MyPosts = () => {
   const [isFilterPaneOpen, setIsFilterPaneOpen] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
@@ -109,4 +109,4 @@ const MyBlogPosts = () => {
   );
 };
 
-export default MyBlogPosts;
+export default MyPosts;

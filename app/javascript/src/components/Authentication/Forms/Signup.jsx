@@ -15,7 +15,7 @@ const Signup = ({ handleSubmit }) => {
 
   return (
     <NeetoUIForm
-      className="mb-32 flex h-full flex-col justify-center"
+      className="mt-24 flex h-full flex-col justify-start"
       formikProps={{
         onSubmit: handleSubmit,
         initialValues: SIGNUP_FORM_DEFAULT_VALUES,

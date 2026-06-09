@@ -8,7 +8,7 @@ import { PageNotFound, PrivateRoute } from "commons";
 import Login from "components/Authentication/Login";
 import Signup from "components/Authentication/Signup";
 import Dashboard from "components/Dashboard";
-import MyBlogPosts from "components/MyBlogPosts";
+import MyPosts from "components/MyPosts";
 import { CreatePost, EditPost, ShowPost } from "components/Posts";
 import PostNotFound from "components/Posts/PostNotFound";
 import * as R from "ramda";
@@ -52,7 +52,7 @@ const App = () => {
           />
           <PrivateRoute
             exact
-            component={MyBlogPosts}
+            component={MyPosts}
             condition={isLoggedIn}
             path={routes.posts.personal}
             redirectRoute={routes.login}

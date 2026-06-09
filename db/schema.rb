@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_08_052002) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_09_154152) do
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "categories_posts", id: false, force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_08_052002) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_organizations_on_name", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -59,7 +61,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_08_052002) do
     t.datetime "updated_at", null: false
     t.integer "organization_id", null: false
     t.string "authentication_token"
-    t.integer "posts_count"
+    t.integer "posts_count", default: 0
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 

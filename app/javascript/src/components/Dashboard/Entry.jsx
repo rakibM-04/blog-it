@@ -37,7 +37,10 @@ const Entry = ({
           className="flex items-center gap-4"
           to={buildUrl(routes.posts.show, { slug })}
         >
-          <Typography className="capitalize hover:cursor-pointer" style="h1">
+          <Typography
+            className="first-letter:capitalize hover:cursor-pointer"
+            style="h1"
+          >
             {title}
           </Typography>
           {isBloggable && <Tag label={t("dashboard.isBloggable")} />}

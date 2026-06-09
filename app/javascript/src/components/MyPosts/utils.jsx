@@ -15,7 +15,10 @@ export const generateRowData = posts =>
     id: slug,
     slug,
     title: (
-      <Link className="font-bold" to={routes.posts.show.replace(":slug", slug)}>
+      <Link
+        className="font-bold first-letter:uppercase"
+        to={routes.posts.show.replace(":slug", slug)}
+      >
         {title}
       </Link>
     ),
