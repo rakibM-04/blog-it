@@ -104,3 +104,5 @@ gem "wkhtmltopdf-binary"
 # To load the environment variables
 gem "dotenv-rails"
 gem "redis"
+
+gem "counter_culture", "~> 3.2"

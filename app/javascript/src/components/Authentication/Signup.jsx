@@ -1,13 +1,14 @@
 import { Scaffold } from "commons";
 import { useSignup } from "hooks/reactQuery/useAuthApi";
 import { t } from "i18next";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import routes from "routes";
 
 import SignupForm from "./Forms/Signup";
 
 const Signup = () => {
   const mutation = useSignup();
+  const history = useHistory();
 
   const handleSubmit = async ({
     name,
@@ -26,7 +27,7 @@ const Signup = () => {
       },
       {
         onSuccess: () => {
-          <Redirect to={routes.home} />;
+          history.replace(routes.login);
         },
       }
     );

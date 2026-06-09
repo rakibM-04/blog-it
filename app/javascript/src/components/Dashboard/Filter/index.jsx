@@ -12,7 +12,7 @@ const Filter = ({ isOpen, onClose, filters, onFilterChange }) => {
   const selectedCategoryIds = (filters.categories || []).map(Number);
 
   return (
-    <Pane isOpen={isOpen} size="small" onClose={onClose}>
+    <Pane size="small" {...{ isOpen, onClose }}>
       <Pane.Header>
         <Typography style="h2">{t("dashboard.filters.title")}</Typography>
       </Pane.Header>

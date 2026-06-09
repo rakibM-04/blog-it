@@ -3,24 +3,24 @@ import { STATUS } from "constants";
 import { useState } from "react";
 
 import {
-  useDeleteAllPosts,
-  useUpdateAllPosts,
-} from "hooks/reactQuery/usePostsApi";
+  useDeleteBulkPosts,
+  useUpdateBulkPosts,
+} from "hooks/reactQuery/useMyPostsApi";
 import { t } from "i18next";
 import { MenuHorizontal } from "neetoicons";
 import { ActionDropdown, Button } from "neetoui";
 
 const Bulk = ({ selectedSlugs }) => {
   const [status, setStatus] = useState(STATUS.published);
-  const updateAllMutation = useUpdateAllPosts();
-  const deleteAllMutation = useDeleteAllPosts();
+  const updateBulkMutation = useUpdateBulkPosts();
+  const deleteBulkMutation = useDeleteBulkPosts();
 
   const handleUpdateSubmit = () => {
-    updateAllMutation.mutate({ slugs: selectedSlugs, status });
+    updateBulkMutation.mutate({ slugs: selectedSlugs, status });
   };
 
   const handleDeleteSubmit = () => {
-    deleteAllMutation.mutate(selectedSlugs);
+    deleteBulkMutation.mutate(selectedSlugs);
   };
 
   return (

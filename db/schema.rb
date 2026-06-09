@@ -68,7 +68,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_08_052002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.integer "post_id"
     t.index ["post_id"], name: "index_votes_on_post_id"
     t.index ["user_id", "post_id"], name: "index_votes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_votes_on_user_id"

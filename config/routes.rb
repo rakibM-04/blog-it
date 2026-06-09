@@ -16,24 +16,24 @@ Rails.application.routes.draw do
 
   constraints(lambda { |req| req.format == :json }) do
     resources :posts, except: %i[new edit], param: :slug do
-      collection do
-        delete "bulk_destroy"
-        patch "bulk_update"
-        get "personal"
-      end
-
       member do
+        patch "vote"
         resource :attachment, only: %i[create], module: :posts do
           get :download
         end
-
-        patch "vote"
+      end
+    end
+    resources :my_posts, only: %i[index] do
+      collection do
+        delete :bulk, action: :bulk_destroy
+        patch :bulk, action: :bulk_update
       end
     end
     resources :categories, only: %i[index create]
     resources :users, only: %i[index create]
     resources :organizations, only: :index
     resource :session, only: %i[create destroy]
+    resource :vote, only: %i[create]
   end
 
   root "home#index"

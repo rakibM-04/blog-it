@@ -10,14 +10,6 @@ export const useFetchPosts = ({ categories, status, title }) =>
     cacheTime: 0,
   });
 
-export const useFetchPersonalPosts = ({ categories, status, title }) =>
-  useQuery({
-    queryKey: ["posts", categories, title, status],
-    queryFn: () => postsApi.fetchPersonal({ categories, title, status }),
-    staleTime: 0,
-    cacheTime: 0,
-  });
-
 export const useShowPost = ({ slug }) =>
   useQuery({
     queryKey: ["posts", slug],
@@ -38,21 +30,9 @@ export const useUpdatePost = slug =>
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
   });
 
-export const useUpdateAllPosts = () =>
-  useMutation({
-    mutationFn: ({ slugs, status }) => postsApi.updateAll({ slugs, status }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
-  });
-
 export const useDeletePost = slug =>
   useMutation({
     mutationFn: ({ quiet = false }) => postsApi.destroy({ slug, quiet }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
-  });
-
-export const useDeleteAllPosts = () =>
-  useMutation({
-    mutationFn: slugs => postsApi.destroyAll(slugs),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["posts"] }),
   });
 

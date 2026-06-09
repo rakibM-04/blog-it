@@ -8,6 +8,7 @@ class PostFilterService
   end
 
   def process!(params)
+    puts params
     by_categories(params[:categories]) if params[:categories].present?
     by_title(params[:title]) if params[:title].present?
     by_status(params[:status]) if params[:status].present?

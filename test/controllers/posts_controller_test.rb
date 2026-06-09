@@ -121,4 +121,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     response_json = response.parsed_body
     assert_equal I18n.t("not_found", entity: "Post"), response_json["error"]
   end
+
+  def test_not_found_error_rendered_for_invalid_post_slug
+    other_post = build(:post)
+    @other_user.posts.create!(
+      title: other_post.title, description: other_post.description,
+      organization_id: @other_user.organization_id)
+    get personal_posts_path(), headers: @creator_headers
+    assert_response :success
+    response_json = response.parsed_body
+    assert_equal 1, response_json["posts"].length
+    assert_equal @creator.name, response_json["posts"].first["authorName"]
+  end
 end

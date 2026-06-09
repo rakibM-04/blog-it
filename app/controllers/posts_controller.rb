@@ -2,19 +2,13 @@
 
 class PostsController < ApplicationController
   before_action :load_post!, only: %i[show update destroy vote]
-  after_action :verify_authorized, except: %i[index personal bulk_destroy bulk_update]
+  after_action :verify_authorized, except: %i[index]
 
   helper_method :current_user
 
   def index
     @posts = policy_scope(Post).status_published
-    @posts = PostFilterService.new(@posts).process!(params)
-    @user_id = current_user.id
-  end
-
-  def personal
-    @posts = current_user.posts
-    @posts = PostFilterService.new(@posts).process!(params)
+    @posts = PostFilterService.new(@posts).process!(filter_params)
     @user_id = current_user.id
   end
 
@@ -29,21 +23,6 @@ class PostsController < ApplicationController
         render_error(t("post.no_change"))
       end
     end
-  end
-
-  def bulk_update
-    patch, slugs = bulk_update_params
-    status = patch[:status]
-    @posts = current_user.posts.where(slug: slugs).where.not(status:)
-
-    @posts.each do |post|
-      post.update!(status:)
-    end
-  end
-
-  def bulk_destroy
-    @posts = current_user.posts.where(slug: bulk_destroy_params)
-    @posts.destroy_all!
   end
 
   def create
@@ -82,20 +61,16 @@ class PostsController < ApplicationController
 
   private
 
+    def filter_params
+      params.permit(categories: [])
+    end
+
     def load_post!
       @post = Post.find_by!(slug: params[:slug])
     end
 
     def post_params
       params.require(:post).permit(:slug, :title, :description, :status, category_ids: [])
-    end
-
-    def bulk_update_params
-      params.expect(patch: [:status], slugs: [])
-    end
-
-    def bulk_destroy_params
-      params.expect(slugs: [])
     end
 
     def vote_params

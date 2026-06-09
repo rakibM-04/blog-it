@@ -13,6 +13,9 @@ class Vote < ApplicationRecord
   after_save :set_bloggable
   after_destroy :set_bloggable
 
+  counter_culture :post, column_name: proc { |model| "upvotes" if model.value == 1 }
+  counter_culture :post, column_name: proc { |model| "downvotes" if model.value == -1 }
+
   private
 
     def set_bloggable
