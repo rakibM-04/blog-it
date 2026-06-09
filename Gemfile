@@ -88,7 +88,7 @@ gem "minitest-bisect"
 gem "pry-byebug"
 gem "pundit"
 
-gem "sidekiq", "~> 7.0"
+gem "sidekiq", "~> 8.0"
 # For periodic sidekiq jobs
 gem "sidekiq-cron"
 # Gemfile
