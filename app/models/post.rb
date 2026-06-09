@@ -3,7 +3,6 @@
 class Post < ApplicationRecord
   MAX_TITLE_LENGTH = 125
   MAX_DESCRIPTION_LENGTH = 10000
-  BLOGGABLE_THRESHOLD = 0
 
   enum :status, { draft: "draft", published: "published" }, prefix: true
 

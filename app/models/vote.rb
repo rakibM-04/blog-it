@@ -3,6 +3,7 @@
 class Vote < ApplicationRecord
   MAX_VOTE_VALUE = 1
   MIN_VOTE_VALUE = -1
+  BLOGGABLE_THRESHOLD = 0
 
   belongs_to :user
   belongs_to :post
@@ -19,6 +20,6 @@ class Vote < ApplicationRecord
   private
 
     def set_bloggable
-      post.update(is_bloggable: post.votes.sum(:value) > Post::BLOGGABLE_THRESHOLD)
+      post.update(is_bloggable: post.votes.sum(:value) > BLOGGABLE_THRESHOLD)
     end
 end

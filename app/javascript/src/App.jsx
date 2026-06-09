@@ -24,7 +24,6 @@ const App = () => {
   const isLoggedIn = !R.either(R.isNil, R.isEmpty)(authToken);
 
   return (
-    // <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ToastContainer />
@@ -93,7 +92,6 @@ const App = () => {
         </Switch>
       </BrowserRouter>
     </QueryClientProvider>
-    // </React.StrictMode>
   );
 };
 
