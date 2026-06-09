@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class VotesController < ApplicationController
+  after_action :verify_authorized
+
   def create
     post_id, value = vote_params[:vote]
     user_id = current_user.id

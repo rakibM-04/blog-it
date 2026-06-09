@@ -127,7 +127,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @other_user.posts.create!(
       title: other_post.title, description: other_post.description,
       organization_id: @other_user.organization_id)
-    get personal_posts_path(), headers: @creator_headers
+    get my_posts_path(), headers: @creator_headers
     assert_response :success
     response_json = response.parsed_body
     assert_equal 1, response_json["posts"].length
