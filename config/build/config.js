@@ -22,11 +22,12 @@ const alias = {
   constants: absolutePath("src/constants"),
   hooks: absolutePath("src/hooks"),
   stores: absolutePath("src/stores"),
+  channels: absolutePath("src/channels"),
   neetoui: "@bigbinary/neetoui",
   neetoicons: "@bigbinary/neeto-icons",
   neetocist: "@bigbinary/neeto-cist",
   reactquery: "@tanstack/react-query",
-  neetomolecules: "@bigbinary/neeto-molecules"
+  neetomolecules: "@bigbinary/neeto-molecules",
 };
 
 export { alias };

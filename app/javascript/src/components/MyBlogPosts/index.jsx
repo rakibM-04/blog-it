@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-import Scaffold from "commons/Scaffold/Scaffold";
+import { Scaffold, ScaffoldSpinner } from "commons";
 import { useFetchPosts } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
 import { Filter } from "neetoicons";
-import { Button, Spinner, Table, Typography } from "neetoui";
+import { Button, Table, Typography } from "neetoui";
 import * as R from "ramda";
 import useTableFilterStore from "stores/useTableFilterStore";
 
@@ -39,7 +39,7 @@ const MyBlogPosts = () => {
     })
   );
 
-  if (isLoading) return <Spinner />; // to-change-later-to-scaffold-spinner
+  if (isLoading) return <ScaffoldSpinner title={t("myBlogPosts.title")} />;
 
   const rowData = generateRowData(posts);
   const filteredColumnData = COLUMN_DATA.filter(

@@ -1,0 +1,17 @@
+<div class="main-content">
+  <div class="title">
+    <%= @post.title %>
+  </div>
+  <p class="author name">
+    <%= @user.name %>
+  </p>
+  <p class="author email">
+    <%= @user.email %>
+  </p>
+  <p class="date">
+    <%= @post.published_at.strftime('%d-%m-%y %H:%M') %>
+  </p>
+  <div class="description">
+    <%= @post.description %>
+  </div>
+</div>

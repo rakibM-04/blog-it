@@ -10,10 +10,6 @@ gem "rails", "~> 8.0.0"
 gem "sprockets"
 gem "sprockets-rails"
 
-# THE GEM USED BEFORE
-# # Use sqlite3 as the database for Active Record
-# gem "sqlite3", ">= 2.1"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
@@ -63,7 +59,7 @@ group :development, :test do
   # For auto-generating demo data
   gem "faker"
 
-  gem "sqlite3", "~> 1.4"
+  gem "sqlite3", ">= 2.1"
 end
 
 group :development do
@@ -99,3 +95,12 @@ gem "sidekiq-cron"
 gem "secvault", "~> 3.1"
 
 gem "pg", group: [:production]
+
+# PDF generation gem
+gem "wicked_pdf"
+# wicked_pdf uses the following binary
+gem "wkhtmltopdf-binary"
+
+# To load the environment variables
+gem "dotenv-rails"
+gem "redis"

@@ -2,7 +2,7 @@ import { STATUS } from "constants";
 
 import { useState } from "react";
 
-import Scaffold from "commons/Scaffold/Scaffold";
+import { Scaffold, ScaffoldSpinner } from "commons";
 import {
   FORM_INITIAL_VALUES,
   FORM_VALIDATION_SCHEMA,
@@ -10,7 +10,6 @@ import {
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import { useCreatePost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
-import { Spinner } from "neetoui";
 import { Form as NeetoUIForm } from "neetoui/formik";
 import { useHistory } from "react-router-dom";
 import routes from "routes";
@@ -25,7 +24,7 @@ const Create = () => {
 
   const { data: { categories } = {}, isLoading } = useFetchCategories();
 
-  if (isLoading) return <Spinner />; // to-change-later-to-scaffold-spinner
+  if (isLoading) return <ScaffoldSpinner title={t("posts.create")} />;
 
   const handleSubmit = async ({ title, description, categories }) => {
     const categoryIds = categories.map(category => category.id);

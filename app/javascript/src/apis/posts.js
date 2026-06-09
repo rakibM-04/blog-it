@@ -38,7 +38,14 @@ const destroyAll = slugs =>
 const upvote = slug => axios.patch(`/posts/${slug}/vote`, { vote: 1 });
 const downvote = slug => axios.patch(`/posts/${slug}/vote`, { vote: -1 });
 
+const generatePdf = slug => axios.post(`/posts/${slug}/attachment`, {});
+
+const download = slug =>
+  axios.get(`/posts/${slug}/attachment/download`, { responseType: "blob" });
+
 const postsApi = {
+  generatePdf,
+  download,
   fetch,
   show,
   create,

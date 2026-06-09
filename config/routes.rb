@@ -22,6 +22,10 @@ Rails.application.routes.draw do
       end
 
       member do
+        resource :attachment, only: %i[create], module: :posts do
+          get :download
+        end
+
         patch "vote"
       end
     end

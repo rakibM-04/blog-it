@@ -2,7 +2,7 @@ import { STATUS } from "constants";
 
 import { useState } from "react";
 
-import Scaffold from "commons/Scaffold/Scaffold";
+import { Scaffold } from "commons";
 import { FORM_VALIDATION_SCHEMA } from "components/Posts/constants";
 import { useFetchCategories } from "hooks/reactQuery/useCategoriesApi";
 import {

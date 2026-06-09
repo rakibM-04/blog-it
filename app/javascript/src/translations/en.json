@@ -1,5 +1,6 @@
 {
   "defaultErrorNotification": "Something went wrong!",
+  "loading": "Loading...",
   "pageNotFound": {
     "title": "Page Not Found",
     "buttonLabel": "Back to Home"
@@ -70,6 +71,13 @@
       "publish": "Publish",
       "unpublish": "Unpublish",
       "delete": "Delete"
+    },
+    "attachment": {
+      "connected": "Connection ready",
+      "title": "Download attachment",
+      "ready": "Download complete",
+      "noDownloadsYet": "If the attachment did not download yet,",
+      "redownloadAction": "click here"
     }
   },
   "users": {

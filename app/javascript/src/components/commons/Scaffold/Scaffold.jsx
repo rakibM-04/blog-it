@@ -1,6 +1,7 @@
 import classnames from "classnames";
-import Sidebar from "commons/Scaffold/Sidebar";
 import { Typography } from "neetoui";
+
+import Sidebar from "./Sidebar";
 
 const Scaffold = ({
   title,

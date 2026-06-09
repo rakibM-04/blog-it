@@ -28,6 +28,8 @@
       "translations/*": ["app/javascript/src/translations/*"],
       "utils": ["app/javascript/src/utils"],
       "utils/*": ["app/javascript/src/utils/*"],
+      "channels": ["app/javascript/src/channels"],
+      "channels/*": ["app/javascript/src/channels/*"],
 
       "neetoui": ["node_modules/@bigbinary/neetoui"],
       "neetoui/*": ["node_modules/@bigbinary/neetoui/*"],

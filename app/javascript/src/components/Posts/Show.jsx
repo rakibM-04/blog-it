@@ -1,17 +1,22 @@
 import { STATUS } from "constants";
 
-import Scaffold from "commons/Scaffold/Scaffold";
+import { useState } from "react";
+
+import { Scaffold, ScaffoldSpinner } from "commons";
 import { createCategoryTags } from "components/Dashboard/utils";
 import { useShowPost } from "hooks/reactQuery/usePostsApi";
 import { t } from "i18next";
-import { Edit } from "neetoicons";
-import { Avatar, Button, Spinner, Tag, Typography } from "neetoui";
+import { Download, Edit } from "neetoicons";
+import { Avatar, Button, Tag, Typography } from "neetoui";
 import { useHistory, useParams } from "react-router-dom";
 import routes from "routes";
 import { formatDate } from "utils/date";
 import { getFromLocalStorage } from "utils/storage";
 
+import DownloadAttachment from "./DownloadAttachment";
+
 const Show = () => {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const history = useHistory();
   const { slug } = useParams();
   const {
@@ -29,7 +34,7 @@ const Show = () => {
     } = {},
   } = useShowPost({ slug });
 
-  if (isLoading) return <Spinner />; // to-change-later-to-scaffold-spinner
+  if (isLoading) return <ScaffoldSpinner />;
 
   if (isError) {
     return history.replace(routes.posts.notFound);
@@ -48,15 +53,28 @@ const Show = () => {
       }
       toolbar={
         canEdit && (
-          <Button
-            icon={Edit}
-            label={t("posts.edit")}
-            style="secondary"
-            to={routes.posts.edit.replace(":slug", slug)}
-          />
+          <>
+            <Button
+              icon={Edit}
+              label={t("posts.edit")}
+              style="secondary"
+              to={routes.posts.edit.replace(":slug", slug)}
+            />
+            <Button
+              className="themed-button"
+              icon={Download}
+              onClick={() => setIsDownloadModalOpen(true)}
+            />
+          </>
         )
       }
     >
+      {isDownloadModalOpen && (
+        <DownloadAttachment
+          isOpen={isDownloadModalOpen}
+          onClose={() => setIsDownloadModalOpen(false)}
+        />
+      )}
       <div className="relative bottom-4 flex flex-col border-b-2 pb-4">
         <div className="flex">{createCategoryTags(categories)}</div>
         <div className="mt-4 flex items-center gap-3">

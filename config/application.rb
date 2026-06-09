@@ -32,5 +32,7 @@ module BlogIt
 
     config.assets.pipeline = :sprockets
     config.active_job.queue_adapter = :sidekiq
+
+    Dotenv::Railtie.load
   end
 end

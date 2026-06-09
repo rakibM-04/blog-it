@@ -2,7 +2,7 @@ import { NoData } from "neetoui";
 import routes from "routes";
 import withT from "utils/withT";
 
-const PageNotFound = ({ t }) => (
+const PostNotFound = ({ t }) => (
   <div className="flex h-screen items-center justify-center">
     <NoData
       title={t("posts.notFound.title")}
@@ -15,4 +15,4 @@ const PageNotFound = ({ t }) => (
   </div>
 );
 
-export default withT(PageNotFound);
+export default withT(PostNotFound);
