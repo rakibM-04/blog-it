@@ -80,7 +80,7 @@ group :test do
   gem "simplecov", require: false
 end
 
-gem "connection_pool", "~> 2.4"
+gem "connection_pool", "~> 3.0"
 gem "react-rails", "~> 2.7.1"
 
 gem "data_migrate"
