@@ -81,7 +81,7 @@ group :test do
 end
 
 gem "connection_pool", "~> 2.4"
-gem "react-rails", "~> 2.7.1"
+gem "react-rails", "~> 3.3.1"
 
 gem "data_migrate"
 gem "minitest-bisect"
